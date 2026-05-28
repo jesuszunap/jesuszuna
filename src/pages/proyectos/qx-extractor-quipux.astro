@@ -1,19 +1,861 @@
 ---
-import InternalPage from "@components/InternalPage.astro";
-import { SITE_CONTENT } from "@config";
 import Layout from "@layouts/Layout.astro";
 
-const project = SITE_CONTENT.projects.items.find(
-  ({ name }) => name === "QX - Extractor Quipux",
-);
+const title = "QX - Extractor Quipux | Proyecto de Jesús Zuña";
+const description =
+  "QX - Extractor Quipux es una aplicación de escritorio para Windows que ayuda a extraer, organizar y exportar información documental desde Quipux, con exportación Excel e Inteligencia Documental local opcional.";
+
+const assetPath = "/images/projects/qx-extractor-quipux";
+const downloadUrl =
+  "https://github.com/jesuszunap/qx-extractor-quipux/releases/download/v3.0.0/QX-Extractor-Quipux-Setup-3.0.0.exe";
+const manualUrl =
+  "https://github.com/jesuszunap/qx-extractor-quipux/releases/download/v3.0.0/MANUAL_USUARIO_QX_3.0.0.md";
+const releaseUrl = "https://github.com/jesuszunap/qx-extractor-quipux/releases";
+
+const badges = ["Windows", "Python", "Selenium", "Excel", "IA local opcional"];
+
+const functions = [
+  {
+    title: "Extracción desde bandejas",
+    text: "Permite trabajar con Recibidos, Enviados o Ambas bandejas.",
+  },
+  {
+    title: "Descarga de documentos",
+    text: "Descarga PDFs principales y, si se activa, también anexos.",
+  },
+  {
+    title: "Exportación a Excel",
+    text: "Organiza la información extraída en hojas estructuradas.",
+  },
+  {
+    title: "Links detectados",
+    text: "Puede revisar PDFs principales y registrar enlaces encontrados.",
+  },
+  {
+    title: "Recorrido documental",
+    text: "Ayuda a revisar movimientos relevantes y posibles reasignaciones.",
+  },
+  {
+    title: "Inteligencia Documental local",
+    text: "Sugiere relaciones y agrupaciones documentales de forma opcional.",
+  },
+  {
+    title: "Recuperación de sesión",
+    text: "Incluye mecanismos para manejar casos como sesión expirada o sesión abierta en otro equipo.",
+  },
+  {
+    title: "Hojas adicionales",
+    text: "Genera hojas como Links detectados, Recorrido documental y Resumen IA según las opciones activadas.",
+  },
+];
+
+const flow = [
+  "Iniciar sesión en Quipux desde QX.",
+  "Elegir bandeja: Recibidos, Enviados o Ambas.",
+  "Configurar fechas, búsqueda y opciones avanzadas.",
+  "Ejecutar la extracción.",
+  "Revisar el resumen final.",
+  "Abrir el Excel generado.",
+  "Revisar IA local si fue activada.",
+];
+
+const aiDoes = [
+  "Funciona localmente.",
+  "Sugiere relaciones documentales.",
+  "Apoya clasificación, trazabilidad y archivación.",
+  "Genera resultados revisables por el usuario.",
+];
+
+const aiDoesNot = [
+  "No usa APIs externas.",
+  "No envía documentos a la nube.",
+  "No es un chatbot.",
+  "No hace OCR.",
+  "No modifica documentos originales.",
+  "No reemplaza el criterio del analista.",
+];
+
+const screenshots = [
+  {
+    title: "Pantalla principal",
+    text: "Inicio de QX - Extractor Quipux antes de configurar una extracción documental.",
+    light: "screenshot-01-light.webp",
+    dark: "screenshot-01-dark.webp",
+  },
+  {
+    title: "Configuración de extracción",
+    text: "Selección de bandeja, rango de fechas y parámetros principales para iniciar el proceso.",
+    light: "screenshot-02-light.webp",
+    dark: "screenshot-02-dark.webp",
+  },
+  {
+    title: "Opciones avanzadas",
+    text: "Configuración de funciones adicionales como anexos, recorrido documental, detección de links, ajustes de Excel e Inteligencia Documental local.",
+    light: "screenshot-03-light.webp",
+    dark: "screenshot-03-dark.webp",
+  },
+  {
+    title: "Ejecución del proceso",
+    text: "Seguimiento del avance mientras QX procesa documentos, descargas y datos de la extracción.",
+    light: "screenshot-04-light.webp",
+    dark: "screenshot-04-dark.webp",
+  },
+  {
+    title: "Resumen final",
+    text: "Vista de cierre con el resultado general de la extracción realizada.",
+    light: "screenshot-05-light.webp",
+    dark: "screenshot-05-dark.webp",
+  },
+  {
+    title: "Excel generado",
+    text: "Información documental organizada en hojas estructuradas para facilitar revisión, filtrado y análisis posterior.",
+    light: "screenshot-06.webp",
+  },
+  {
+    title: "Resumen IA",
+    text: "Resultado de la Inteligencia Documental local opcional, con sugerencias generadas para apoyar la revisión documental.",
+    light: "screenshot-07.webp",
+  },
+];
+
+const sheets = [
+  "Recibidos",
+  "Enviados",
+  "Links detectados",
+  "Recorrido documental",
+  "Resumen IA",
+  "Grupos sugeridos",
+  "Relaciones documentales",
+];
+
+const technologies = [
+  "Python",
+  "CustomTkinter",
+  "Selenium",
+  "Firefox / Geckodriver",
+  "PyInstaller",
+  "Inno Setup",
+  "Exportación Excel",
+  "Embeddings locales / Sentence Transformers",
+];
+
+const status = [
+  "Versión oficial actual: QX - Extractor Quipux 3.0.0",
+  "Plataforma: Windows",
+  "Instalador principal disponible",
+  "Componente IA opcional separado",
+  "Manual de usuario disponible en Markdown",
+  "Release oficial publicado en GitHub",
+];
+
+const downloads = [
+  {
+    label: "Descargar instalador para Windows",
+    href: downloadUrl,
+    primary: true,
+  },
+  {
+    label: "Leer manual de usuario",
+    href: manualUrl,
+  },
+  {
+    label: "Ver release en GitHub",
+    href: releaseUrl,
+    subtle: true,
+  },
+];
 ---
 
-<Layout>
-  <InternalPage
-    title="QX - Extractor Quipux"
-    badge="Proyecto destacado"
-    note="Página de proyecto en preparación."
-  >
-    <p>{project?.summary}</p>
-  </InternalPage>
+<Layout
+  title={title}
+  description={description}
+  ogTitle="QX - Extractor Quipux"
+  ogDescription={description}
+  ogImage={`${assetPath}/cover-light.webp`}
+>
+  <article class="pt-8 pb-14 md:pt-12 md:pb-20">
+    <a class="mb-8 inline-block text-sm font-medium text-primary" href="/#proyectos">
+      Volver a proyectos
+    </a>
+
+    <section class="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <div>
+        <span
+          class="hero-badge mb-5 inline-block rounded-full bg-primary px-3 py-1 text-xs font-medium text-black"
+        >
+          Proyecto destacado
+        </span>
+        <h1 class="font-serif text-4xl font-bold text-white md:text-6xl">
+          QX - Extractor Quipux
+        </h1>
+        <p class="mt-6 text-lg text-neutral">
+          Una aplicación de escritorio para Windows que ayuda a extraer,
+          organizar y exportar información documental desde Quipux, reduciendo
+          tareas repetitivas y facilitando la revisión en Excel.
+        </p>
+        <p class="mt-5 text-base text-neutral">
+          Desarrollado por Jesús Zuña Pacheco como una herramienta independiente
+          para apoyar procesos de revisión, clasificación y organización
+          documental.
+        </p>
+        <ul class="mt-7 flex flex-wrap gap-2">
+          {
+            badges.map((badge) => (
+              <li class="rounded-full border border-border bg-soft px-3 py-1 text-xs text-neutral">
+                {badge}
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a class="btn-primary" href={downloadUrl}>
+            Descargar QX 3.0.0
+          </a>
+          <a class="btn-secondary" href={manualUrl}>
+            Leer manual de usuario
+          </a>
+        </div>
+        <a class="link-action mt-5 inline-flex" href={releaseUrl}>
+          Ver release en GitHub
+        </a>
+        <p class="mt-6 max-w-2xl text-xs text-neutral">
+          Herramienta independiente. QX no pertenece oficialmente a Quipux ni a
+          gestiondocumental.gob.ec.
+        </p>
+      </div>
+
+      <figure class="media-card hero-cover overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+        <img
+          class="block w-full dark:hidden"
+          src={`${assetPath}/cover-light.webp`}
+          alt="Portada en modo claro de QX - Extractor Quipux"
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+        <img
+          class="hidden w-full dark:block"
+          src={`${assetPath}/cover-dark.webp`}
+          alt="Portada en modo oscuro de QX - Extractor Quipux"
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+      </figure>
+    </section>
+
+    <section class="project-section project-section-first grid gap-5 md:grid-cols-2">
+      <div class="project-card">
+        <h2>El trabajo documental en Quipux puede volverse repetitivo</h2>
+        <p>
+          Trabajar con grandes cantidades de documentos en Quipux puede requerir
+          revisar bandejas, abrir documentos uno por uno, descargar PDFs, guardar
+          anexos, copiar información relevante y organizar resultados
+          manualmente en Excel.
+        </p>
+        <p>
+          Cuando además existen recorridos documentales, reasignaciones, enlaces
+          dentro de PDFs o documentos relacionados entre sí, la revisión puede
+          tomar más tiempo y volverse difícil de mantener ordenada.
+        </p>
+      </div>
+      <div class="project-card">
+        <h2>QX organiza el proceso de extracción y revisión</h2>
+        <p>
+          QX automatiza parte del proceso de extracción documental desde Quipux.
+          Permite seleccionar bandejas, configurar fechas y opciones, descargar
+          documentos principales y anexos, generar archivos Excel estructurados y
+          añadir análisis documental opcional.
+        </p>
+        <p>
+          El objetivo no es reemplazar el criterio del usuario, sino reducir
+          trabajo repetitivo y entregar información organizada para revisión.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <div class="section-heading">
+        <h2>Funciones principales</h2>
+        <p>
+          Un conjunto de funciones pensadas para apoyar tareas documentales
+          repetitivas sin quitar control al usuario.
+        </p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {
+          functions.map((item) => (
+            <article class="project-card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="project-section">
+      <div class="section-heading">
+        <h2>Flujo de uso</h2>
+        <p>
+          La experiencia se organiza como un recorrido simple desde el inicio de
+          sesión hasta la revisión del Excel generado.
+        </p>
+      </div>
+      <ol class="grid gap-4 md:grid-cols-2">
+        {
+          flow.map((step, index) => (
+            <li
+              class={`interactive-surface flex gap-4 rounded-lg border border-border bg-card p-5 shadow-sm backdrop-blur-md ${
+                index === flow.length - 1
+                  ? "flow-close md:col-span-2 md:mx-auto md:w-full md:max-w-[38rem]"
+                  : ""
+              }`}
+            >
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-black">
+                {index + 1}
+              </span>
+              <p class="text-sm text-neutral">{step}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="interactive-surface ai-overview project-section rounded-lg border border-border bg-card-strong p-6 shadow-sm backdrop-blur-md md:p-8">
+      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <p class="text-xs font-medium text-primary">Función opcional</p>
+          <h2 class="mt-3 font-serif text-3xl font-bold text-white">
+            Inteligencia Documental local, opcional y revisable
+          </h2>
+          <p class="mt-5 text-base text-neutral">
+            La versión 3.0.0 incorpora una función opcional de Inteligencia
+            Documental local para sugerir relaciones y posibles grupos de
+            documentos relacionados.
+          </p>
+          <p class="mt-4 text-base text-neutral">
+            Esta función está pensada como apoyo para clasificación,
+            trazabilidad y archivación. QX no decide por el usuario: organiza,
+            sugiere y facilita la revisión.
+          </p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="interactive-surface rounded-lg border border-border bg-card p-5">
+            <h3 class="font-serif text-xl font-semibold text-white">
+              Lo que hace
+            </h3>
+            <ul class="mt-4 space-y-3 text-sm text-neutral">
+              {aiDoes.map((fact) => <li class="list-marker list-marker-yes">{fact}</li>)}
+            </ul>
+          </div>
+          <div class="interactive-surface rounded-lg border border-border bg-card p-5">
+            <h3 class="font-serif text-xl font-semibold text-white">
+              Lo que no hace
+            </h3>
+            <ul class="mt-4 space-y-3 text-sm text-neutral">
+              {
+                aiDoesNot.map((fact) => (
+                  <li class="list-marker list-marker-no">{fact}</li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="rounded-lg border border-border bg-soft p-5 md:col-span-2">
+            <p class="font-serif text-xl font-semibold text-white">
+              QX sugiere relaciones documentales, pero el usuario o analista
+              siempre revisa y decide.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-2">
+        {["Resumen IA", "Grupos sugeridos", "Relaciones documentales"].map((sheet) => (
+          <span class="rounded-full border border-border bg-card px-3 py-1 text-xs text-neutral">
+            {sheet}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <section class="project-section">
+      <div class="section-heading">
+        <h2>Capturas</h2>
+        <p>
+          Una vista general de la aplicación, su configuración, el proceso de
+          extracción y los resultados generados.
+        </p>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-2">
+        {
+          screenshots.map((screenshot, index) => (
+            <figure
+              class={`media-card screenshot-card overflow-hidden rounded-lg border border-border bg-card shadow-sm backdrop-blur-md ${
+                index === 0 || index > 4 ? "lg:col-span-2" : ""
+              }`}
+            >
+              <div class="bg-soft">
+                <img
+                  class={screenshot.dark ? "block w-full dark:hidden" : "w-full"}
+                  src={`${assetPath}/${screenshot.light}`}
+                  alt={`${screenshot.title} de QX - Extractor Quipux`}
+                  width="1600"
+                  height="900"
+                  loading={index < 2 ? "eager" : "lazy"}
+                />
+                {screenshot.dark && (
+                  <img
+                    class="hidden w-full dark:block"
+                    src={`${assetPath}/${screenshot.dark}`}
+                    alt={`${screenshot.title} de QX - Extractor Quipux en modo oscuro`}
+                    width="1600"
+                    height="900"
+                    loading={index < 2 ? "eager" : "lazy"}
+                  />
+                )}
+              </div>
+              <figcaption class="p-5 md:p-6">
+                <p class="text-xs font-medium text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 class="mt-2 font-serif text-2xl font-semibold text-white">
+                  {screenshot.title}
+                </h3>
+                <p class="mt-3 text-sm text-neutral">{screenshot.text}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="project-section grid gap-5 lg:grid-cols-2">
+      <div class="project-card">
+        <h2>Resultados organizados en Excel</h2>
+        <p>
+          Según las opciones activadas, QX puede generar distintas hojas dentro
+          del archivo Excel, separando la información principal de los análisis
+          adicionales.
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {
+            sheets.map((sheet) => (
+              <li class="rounded-full border border-border bg-soft px-3 py-1 text-xs text-neutral">
+                {sheet}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="project-card">
+        <h2>Tecnologías utilizadas</h2>
+        <p>
+          QX fue desarrollado principalmente con Python y herramientas orientadas
+          a automatización de escritorio, navegación controlada, empaquetado para
+          Windows y generación de reportes.
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {
+            technologies.map((technology) => (
+              <li class="rounded-full border border-border bg-soft px-3 py-1 text-xs text-neutral">
+                {technology}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="project-section grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+      <div class="project-card">
+        <h2>Estado actual</h2>
+        <ul class="status-list mt-6 space-y-3 text-sm text-neutral">
+          {status.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <h2>Descargar QX</h2>
+        <p>
+          La versión oficial actual es QX - Extractor Quipux 3.0.0 y está
+          disponible desde GitHub.
+        </p>
+        <p>
+          El instalador principal permite usar las funciones base de extracción,
+          descarga, recorrido documental, links detectados y exportación Excel.
+          El componente de Inteligencia Documental local es opcional y se
+          gestiona desde la propia aplicación cuando el usuario desea utilizar
+          esa función.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          {
+            downloads.map((item) => (
+              <a
+                class={
+                  item.primary
+                    ? "btn-primary"
+                    : item.subtle
+                      ? "link-action"
+                      : "btn-secondary"
+                }
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+        <ul class="mt-6 space-y-2 text-xs text-neutral">
+          <li>QX-Extractor-Quipux-Setup-3.0.0.exe</li>
+          <li>MANUAL_USUARIO_QX_3.0.0.md</li>
+        </ul>
+        <p class="mt-4 text-xs text-neutral">
+          El manual actualmente está disponible en formato Markdown.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-section grid gap-5 lg:grid-cols-2">
+      <div class="project-card">
+        <h2>Evolución del proyecto</h2>
+        <p>
+          QX ha evolucionado progresivamente desde una herramienta de extracción
+          documental hacia una solución más completa para organizar información
+          de Quipux.
+        </p>
+        <p>
+          Entre sus avances se incluyen la descarga de documentos, manejo de
+          anexos, exportación estructurada a Excel, detección de links, revisión
+          de recorrido documental, recuperación ante interrupciones de sesión e
+          Inteligencia Documental local opcional.
+        </p>
+        <p>
+          Cada mejora busca resolver necesidades reales del trabajo documental:
+          reducir tareas repetitivas, mejorar la organización y facilitar la
+          revisión posterior.
+        </p>
+      </div>
+
+      <div class="notice-card project-card">
+        <div class="flex items-start gap-4">
+          <span class="notice-icon" aria-hidden="true">i</span>
+          <h2>Aviso importante</h2>
+        </div>
+        <p>
+          QX - Extractor Quipux es una herramienta independiente desarrollada por
+          Jesús Zuña Pacheco.
+        </p>
+        <p>
+          No pertenece oficialmente a Quipux, no forma parte de
+          gestiondocumental.gob.ec y no representa a ninguna institución pública.
+        </p>
+        <p>
+          La herramienta ayuda a extraer, organizar y presentar información para
+          revisión. El usuario es responsable del uso de la información obtenida
+          y de validar los resultados generados.
+        </p>
+        <p>
+          Las funciones de Inteligencia Documental producen sugerencias, no
+          decisiones oficiales.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-section project-card">
+      <h2>Créditos</h2>
+      <ul class="mt-6 space-y-3 text-sm text-neutral">
+        <li>Desarrollado por Jesús Zuña Pacheco.</li>
+        <li>Logo principal: María Zuña.</li>
+        <li>Iconos: Uicons by Flaticon.</li>
+      </ul>
+    </section>
+  </article>
 </Layout>
+
+<style>
+  .project-section {
+    margin-top: 5rem;
+  }
+
+  .project-section-first {
+    margin-top: 3.5rem;
+  }
+
+  .section-heading {
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-heading h2,
+  .project-card h2 {
+    font-family: var(--font-sora);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.45rem;
+    color: var(--text-main);
+  }
+
+  .section-heading p,
+  .project-card p {
+    margin-top: 1rem;
+    color: var(--text-muted);
+  }
+
+  .project-card {
+    border: 1px solid var(--border-soft);
+    border-radius: 0.5rem;
+    background: var(--surface-card);
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    backdrop-filter: blur(12px);
+  }
+
+  .project-card,
+  .interactive-surface,
+  .media-card,
+  .btn-primary,
+  .btn-secondary,
+  .link-action,
+  li.rounded-full,
+  span.rounded-full {
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease,
+      color 220ms ease;
+  }
+
+  @media (hover: hover) {
+    .project-card:hover,
+    .interactive-surface:hover {
+      border-color: var(--accent-main);
+      box-shadow: 0 12px 28px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+
+    .media-card:hover {
+      border-color: var(--accent-main);
+      box-shadow: 0 16px 34px rgb(0 0 0 / 0.12);
+      transform: translateY(-3px);
+    }
+
+    .ai-overview:hover,
+    .screenshot-card:hover {
+      transform: none;
+    }
+
+    .hero-cover:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      transform: none;
+    }
+
+    li.rounded-full:hover,
+    span.rounded-full:hover {
+      border-color: var(--accent-main);
+      background-color: var(--surface-card-strong);
+      transform: translateY(-1px);
+    }
+  }
+
+  .project-card h3 {
+    font-family: var(--font-sora);
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.9rem;
+    color: var(--text-main);
+  }
+
+  .project-card h3 + p {
+    margin-top: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .link-action {
+    align-items: center;
+    color: var(--accent-main);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .link-action::after {
+    content: "->";
+    margin-left: 0.45rem;
+    transition: transform 180ms ease;
+  }
+
+  .link-action:hover::after {
+    transform: translateX(0.2rem);
+  }
+
+  .flow-close {
+    background: var(--surface-card-strong);
+  }
+
+  .list-marker {
+    position: relative;
+    min-height: 1.25rem;
+    padding-left: 1.85rem;
+  }
+
+  .list-marker::before {
+    content: "";
+    position: absolute;
+    top: 0.12rem;
+    left: 0;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid color-mix(in srgb, var(--accent-main) 32%, var(--border-soft));
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-main) 10%, transparent);
+  }
+
+  .list-marker::after {
+    content: "";
+    position: absolute;
+    display: block;
+  }
+
+  .list-marker-yes::after {
+    top: 0.42rem;
+    left: 0.32rem;
+    width: 0.4rem;
+    height: 0.22rem;
+    border-bottom: 2px solid var(--accent-main);
+    border-left: 2px solid var(--accent-main);
+    transform: rotate(-45deg);
+  }
+
+  .list-marker-no::after {
+    top: 0.58rem;
+    left: 0.29rem;
+    width: 0.46rem;
+    height: 2px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-main) 82%, var(--text-main));
+  }
+
+  @media (min-width: 768px) {
+    .project-section-first {
+      margin-top: 4rem;
+    }
+  }
+
+  .status-list li {
+    position: relative;
+    border: 1px solid var(--border-soft);
+    border-radius: 0.5rem;
+    background: var(--surface-soft);
+    padding: 0.75rem 0.9rem 0.75rem 2.35rem;
+  }
+
+  .status-list li::before {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.9rem;
+    color: var(--accent-main);
+    content: "✓";
+    font-weight: 700;
+  }
+
+  .notice-card {
+    background:
+      linear-gradient(180deg, var(--surface-card-strong), var(--surface-card)),
+      var(--surface-card);
+    box-shadow: 0 12px 30px rgb(0 0 0 / 0.08);
+  }
+
+  .notice-icon {
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-main);
+    font-weight: 700;
+  }
+
+  .hero-badge.hero-badge,
+  .hero-badge.hero-badge:hover {
+    background-color: var(--accent-main);
+    color: var(--surface-page);
+    transform: none;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    background: var(--accent-main);
+    color: var(--surface-page);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border-soft);
+    background: var(--surface-card-strong);
+    color: var(--text-main);
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      border-color: var(--accent-main);
+      box-shadow: 0 10px 22px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+
+    .link-action:hover {
+      color: var(--text-main);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .interactive-surface,
+    .media-card,
+    .btn-primary,
+    .btn-secondary,
+    .link-action,
+    .link-action::after,
+    li.rounded-full,
+    span.rounded-full {
+      transition: none;
+    }
+
+    .project-card:hover,
+    .interactive-surface:hover,
+    .media-card:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    li.rounded-full:hover,
+    span.rounded-full:hover {
+      transform: none;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .project-card {
+      padding: 2rem;
+    }
+  }
+</style>
