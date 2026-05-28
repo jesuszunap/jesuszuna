@@ -6,18 +6,21 @@ type Props = HeroProps;
 const { id, name, specialty, summary, actions, technologies } = Astro.props;
 ---
 
-<section class="grid gap-12 py-24 md:py-32 lg:grid-cols-[1.1fr_0.9fr]" id={id}>
+<section
+  class="grid gap-12 py-20 md:py-28 lg:grid-cols-[1.1fr_0.9fr]"
+  id={id}
+>
   <div>
     <p class="mb-5 text-sm font-medium text-primary">
       Software, comunidad y proyectos con enfoque humano
     </p>
     <h1
-      class="mb-4 max-w-4xl font-serif text-6xl font-bold text-white sm:text-7xl md:text-8xl"
+      class="mb-4 max-w-4xl font-serif text-5xl font-bold text-white sm:text-7xl md:text-8xl"
     >
       {name}
     </h1>
     <p
-      class="mb-8 max-w-4xl font-serif text-3xl font-semibold text-primary sm:text-4xl md:text-5xl"
+      class="mb-8 max-w-4xl font-serif text-2xl font-semibold text-primary sm:text-4xl md:text-5xl"
     >
       {specialty}
     </p>
@@ -56,7 +59,7 @@ const { id, name, specialty, summary, actions, technologies } = Astro.props;
 
   <div
     aria-hidden="true"
-    class="relative min-h-80 overflow-hidden rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md"
+    class="relative min-h-72 overflow-hidden rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:min-h-80"
   >
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,var(--accent-soft),transparent_18rem)]">
     </div>

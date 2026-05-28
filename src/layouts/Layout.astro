@@ -35,7 +35,8 @@ const {
 const title = pageTitle ?? defaultTitle;
 const description = pageDescription ?? defaultDescription;
 const ogTitle = pageOgTitle ?? pageTitle ?? defaultOgTitle;
-const ogDescription = pageOgDescription ?? pageDescription ?? defaultOgDescription;
+const ogDescription =
+  pageOgDescription ?? pageDescription ?? defaultOgDescription;
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(ogImage, siteUrl).href;
 const isHome = Astro.url.pathname === "/";
@@ -92,8 +93,16 @@ const structuredData = [
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#f8f5ff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0d1218" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#f8f5ff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0d1218"
+      media="(prefers-color-scheme: dark)"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
