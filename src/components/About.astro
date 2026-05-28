@@ -8,7 +8,7 @@ const { id, title, description, facts, secondaryLink } = Astro.props;
 ---
 
 <Section text={title} href={id}>
-  <div class="space-y-8">
+  <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
     <div class="space-y-5">
       {
         description.split("\n\n").map((paragraph) => (
@@ -16,21 +16,23 @@ const { id, title, description, facts, secondaryLink } = Astro.props;
         ))
       }
     </div>
-    <dl class="grid gap-5 sm:grid-cols-2">
-      {
-        facts.map(({ label, value }) => (
-          <div class="border-t border-neutral/20 pt-4">
-            <dt class="text-xs font-medium text-primary">{label}</dt>
-            <dd class="mt-2 text-sm text-white">{value}</dd>
-          </div>
-        ))
-      }
-    </dl>
-    <a
-      class="inline-block text-sm font-medium text-white hover:text-primary"
-      href={secondaryLink.href}
-    >
-      {secondaryLink.text}
-    </a>
+    <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md">
+      <dl class="grid gap-5">
+        {
+          facts.map(({ label, value }) => (
+            <div class="border-t border-border pt-4 first:border-t-0 first:pt-0">
+              <dt class="text-xs font-medium text-primary">{label}</dt>
+              <dd class="mt-2 text-sm text-white">{value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <a
+        class="mt-7 inline-block text-sm font-medium text-white hover:text-primary"
+        href={secondaryLink.href}
+      >
+        {secondaryLink.text}
+      </a>
+    </div>
   </div>
 </Section>

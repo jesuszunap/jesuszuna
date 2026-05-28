@@ -8,12 +8,12 @@ const { brand, navLinks } = Astro.props;
 ---
 
 <header
-  class="sticky top-0 z-50 mx-auto flex max-w-5xl animate-slide-in justify-between bg-black px-5 py-6"
+  class="sticky top-0 z-50 mx-auto mt-3 flex max-w-5xl animate-slide-in items-center justify-between rounded-lg border border-border bg-card px-4 py-3 shadow-sm backdrop-blur-md md:px-5"
 >
   <a
     href="#inicio"
     aria-label="Ir al inicio"
-    class="font-serif text-xl font-bold text-white"
+    class="font-serif text-lg font-bold text-white md:text-xl"
   >
     {brand}
   </a>
@@ -21,7 +21,7 @@ const { brand, navLinks } = Astro.props;
   <button
     type="button"
     id="menu-button"
-    class="px-1.5 text-neutral sm:hidden"
+    class="px-1.5 text-neutral hover:text-primary lg:hidden"
     aria-expanded="false"
     aria-controls="main-menu"
   >
@@ -29,10 +29,10 @@ const { brand, navLinks } = Astro.props;
   </button>
 
   <nav
-    class="absolute top-20 right-5 hidden rounded-xl border border-neutral/40 bg-black px-4 py-5 text-neutral sm:static sm:block sm:border-0 sm:bg-transparent sm:p-0"
+    class="absolute top-18 right-5 hidden rounded-lg border border-border bg-card-strong px-4 py-5 text-neutral shadow-sm backdrop-blur-md lg:static lg:block lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:backdrop-blur-0"
     id="main-menu"
   >
-    <ul class="gap-2 sm:flex">
+    <ul class="gap-2 lg:flex">
       {
         navLinks.map((link) => (
           <li class="relative">
@@ -62,9 +62,9 @@ const { brand, navLinks } = Astro.props;
   const setActiveNavItem = (sectionId: string) => {
     navItems.forEach((item) => {
       if (item.getAttribute("href") === `#${sectionId}`) {
-        item.classList.add("text-white", "md:after:opacity-100");
+        item.classList.add("text-white", "lg:after:opacity-100");
       } else {
-        item.classList.remove("text-white", "md:after:opacity-100");
+        item.classList.remove("text-white", "lg:after:opacity-100");
       }
     });
   };

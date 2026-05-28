@@ -33,8 +33,8 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <Font cssVariable="--font-gabarito" preload />
-    <Font cssVariable="--font-be-vietnam-pro" preload />
+    <Font cssVariable="--font-sora" preload />
+    <Font cssVariable="--font-inter" preload />
 
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
@@ -47,9 +47,9 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta property="twitter:description" content={ogDescription} />
     <meta property="twitter:image" content={ogImgUrl} />
   </head>
-  <body class="bg-black font-sans">
+  <body class="min-h-screen font-sans text-white">
     <Navbar brand={brand} navLinks={navLinks} />
-    <main class="mx-auto max-w-3xl px-5">
+    <main class="mx-auto max-w-5xl px-5">
       <slot />
     </main>
     <Footer

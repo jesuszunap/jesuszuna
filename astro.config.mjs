@@ -8,14 +8,14 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: "Gabarito",
-      cssVariable: "--font-gabarito",
+      name: "Sora",
+      cssVariable: "--font-sora",
       fallbacks: ["ui-serif", "serif"],
     },
     {
       provider: fontProviders.fontsource(),
-      name: "Be Vietnam Pro",
-      cssVariable: "--font-be-vietnam-pro",
+      name: "Inter",
+      cssVariable: "--font-inter",
       fallbacks: ["system-ui", "sans-serif"],
     },
   ],
