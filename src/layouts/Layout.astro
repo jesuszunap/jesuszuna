@@ -11,12 +11,14 @@ interface Props {
   description?: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogType?: "article" | "profile" | "website";
 }
 
 const pageTitle = Astro.props.title;
 const pageDescription = Astro.props.description;
 const pageOgTitle = Astro.props.ogTitle;
 const pageOgDescription = Astro.props.ogDescription;
+const pageOgType = Astro.props.ogType;
 
 const {
   brand,
@@ -135,7 +137,10 @@ const structuredData = [
     <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:type" content={isHome ? "profile" : "website"} />
+    <meta
+      property="og:type"
+      content={pageOgType ?? (isHome ? "profile" : "website")}
+    />
     <meta property="og:locale" content="es_EC" />
 
     <meta property="twitter:card" content="summary_large_image" />
