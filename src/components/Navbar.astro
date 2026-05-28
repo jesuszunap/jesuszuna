@@ -57,6 +57,38 @@ const { siteLogo, navLinks } = Astro.props;
   const button = document.querySelector("#menu-button");
   const menu = document.querySelector("#main-menu");
   const navItems = document.querySelectorAll("#main-menu > ul > li > a");
+  const sections = [
+    ...document.querySelectorAll<HTMLElement>("section[id]"),
+  ];
+  let lockedSectionId: string | null = null;
+  let unlockTimer: number | undefined;
+
+  const setActiveNavItem = (sectionId: string) => {
+    navItems.forEach((item) => {
+      if (item.getAttribute("href") === `#${sectionId}`) {
+        item.classList.add("text-white", "md:after:opacity-100");
+      } else {
+        item.classList.remove("text-white", "md:after:opacity-100");
+      }
+    });
+  };
+
+  const updateActiveNavItem = () => {
+    if (lockedSectionId) {
+      setActiveNavItem(lockedSectionId);
+      return;
+    }
+
+    const headerOffset = 140;
+    const currentPosition = window.scrollY + headerOffset;
+    const currentSection = sections
+      .filter((section) => currentPosition >= section.offsetTop)
+      .at(-1);
+
+    if (currentSection) {
+      setActiveNavItem(currentSection.id);
+    }
+  };
 
   const toggleMenu = () => {
     menu?.classList.toggle("hidden");
@@ -66,41 +98,28 @@ const { siteLogo, navLinks } = Astro.props;
 
   button?.addEventListener("click", toggleMenu);
   navItems.forEach((item) => {
-    item?.addEventListener("click", toggleMenu);
+    item?.addEventListener("click", () => {
+      const sectionId = item.getAttribute("href")?.replace("#", "");
+      if (sectionId) {
+        lockedSectionId = sectionId;
+        setActiveNavItem(sectionId);
+
+        window.clearTimeout(unlockTimer);
+        unlockTimer = window.setTimeout(() => {
+          lockedSectionId = null;
+          updateActiveNavItem();
+        }, 900);
+      }
+
+      if (!menu?.classList.contains("hidden")) {
+        toggleMenu();
+      }
+    });
   });
 
-  // Update navigation based on scroll position with Intersection Observer
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navItems.forEach((item) => {
-            if (item.getAttribute("href") === `#${entry.target.id}`) {
-              item.classList.add("text-white", "md:after:opacity-100");
-            } else {
-              item.classList.remove("text-white", "md:after:opacity-100");
-            }
-          });
-        }
-      });
-    },
-    { threshold: 0.5 },
-  );
-
-  document.querySelectorAll("section").forEach((section) => {
-    observer.observe(section);
-  });
-
-  // Cleanup observer
-  document.onvisibilitychange = () => {
-    if (document.visibilityState === "hidden") {
-      observer.disconnect();
-    } else {
-      document.querySelectorAll("section").forEach((section) => {
-        observer.observe(section);
-      });
-    }
-  };
+  window.addEventListener("scroll", updateActiveNavItem, { passive: true });
+  window.addEventListener("load", updateActiveNavItem);
+  updateActiveNavItem();
 </script>
 
 <style>
