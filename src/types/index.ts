@@ -30,14 +30,6 @@ export interface HeroProps {
   technologies: string[];
 }
 
-export interface ExperienceProps {
-  company: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  summary: string | string[];
-}
-
 export interface ProjectProps {
   name: string;
   badge?: string;
