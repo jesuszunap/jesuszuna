@@ -103,6 +103,8 @@ export const SITE_CONTENT: SiteContent = {
         status: "En desarrollo / versión funcional",
         summary:
           "QX - Extractor Quipux es una aplicación de escritorio diseñada para automatizar la extracción, organización y exportación de información documental desde Quipux, reduciendo tareas repetitivas y facilitando el trabajo con documentos institucionales.",
+        cardSummary:
+          "Automatiza la extracción y organización de información documental desde Quipux para reducir tareas repetitivas y trabajar con datos más claros y trazables.",
         problem:
           "Ayuda a reducir el tiempo dedicado a tareas repetitivas de revisión, descarga y organización documental, permitiendo trabajar con la información de forma más ordenada, trazable y eficiente.",
         technologies: [
@@ -124,6 +126,8 @@ export const SITE_CONTENT: SiteContent = {
         status: "En planificación / MVP pendiente",
         summary:
           "Cotizador WH es una herramienta web pensada para calcular cotizaciones de forma rápida, clara y accesible desde el celular, reemplazando un flujo previo basado en AppSheet por una experiencia más ligera, personalizada y fácil de mantener.",
+        cardSummary:
+          "Herramienta web pensada para calcular cotizaciones desde el celular de forma rápida, clara y fácil de mantener.",
         problem:
           "Busca simplificar el cálculo de comisiones y montos finales en un flujo cotidiano de cotización, mostrando solo la información necesaria y facilitando acciones como copiar el resultado, revisar historial o compartir la cotización.",
         technologies: [
@@ -141,6 +145,8 @@ export const SITE_CONTENT: SiteContent = {
         name: "Próximamente",
         status: "En preparación",
         summary:
+          "Nuevas herramientas y proyectos de software irán apareciendo aquí conforme avancen y estén listos para compartirse.",
+        cardSummary:
           "Nuevas herramientas y proyectos de software irán apareciendo aquí conforme avancen y estén listos para compartirse.",
         problem: null,
         technologies: [],
@@ -160,12 +166,16 @@ export const SITE_CONTENT: SiteContent = {
         name: "Donadores de sangre en Guayaquil",
         summary:
           "Donadores de sangre en Guayaquil es una iniciativa comunitaria que ayuda a conectar solicitudes de donación con personas dispuestas a colaborar, facilitando la difusión de información de forma organizada y responsable.",
+        cardSummary:
+          "Iniciativa comunitaria que ayuda a difundir solicitudes de donación de sangre en Guayaquil de forma organizada y responsable.",
         purpose:
           "Contribuir a que las solicitudes de donación de sangre puedan difundirse mejor, llegando a personas que estén en posibilidad de ayudar y manteniendo la información lo más clara y ordenada posible.",
         role:
           "Apoyo en la administración y organización del espacio comunitario, procurando que las solicitudes se compartan de manera clara, responsable y útil para quienes necesitan ayuda y para quienes desean colaborar.",
         impact:
           "Actualmente, el grupo reúne a cerca de 500 personas interesadas en apoyar o difundir solicitudes de donación de sangre en Guayaquil.",
+        shortImpact:
+          "Cerca de 500 personas interesadas en apoyar o difundir solicitudes de donación.",
         action: {
           text: "Ver iniciativa",
           href: "/comunidad/donadores-sangre-guayaquil",
@@ -176,12 +186,16 @@ export const SITE_CONTENT: SiteContent = {
         status: "2020 - 2024",
         summary:
           "Acceso a la universidad pública en Ecuador fue una iniciativa comunitaria activa entre 2020 y 2024, orientada a compartir información, resolver dudas y acompañar a personas interesadas en ingresar a la educación superior pública.",
+        cardSummary:
+          "Iniciativa comunitaria activa entre 2020 y 2024 para compartir información útil sobre el acceso a la educación superior pública en Ecuador.",
         purpose:
           "Durante su etapa activa, buscó facilitar el acceso a información clara sobre procesos de admisión, requisitos, oportunidades y dudas frecuentes relacionadas con el ingreso a la universidad pública en Ecuador.",
         role:
           "Administración y organización del espacio comunitario, procurando que la información compartida fuera clara, útil y accesible para aspirantes y personas interesadas en la educación superior pública.",
         impact:
           "En su etapa de mayor alcance, la comunidad llegó a reunir alrededor de 40.000 integrantes, consolidándose como uno de los espacios ecuatorianos más grandes en Telegram relacionados con orientación y acceso a la educación superior pública.",
+        shortImpact:
+          "Alrededor de 40.000 integrantes en su etapa de mayor alcance.",
         action: {
           text: "Ver iniciativa",
           href: "/comunidad/acceso-universidad-publica-ecuador",
@@ -191,6 +205,8 @@ export const SITE_CONTENT: SiteContent = {
         name: "Próximamente",
         status: "En preparación",
         summary:
+          "Nuevas iniciativas comunitarias podrán sumarse aquí conforme avancen y tengan información suficiente para compartirse.",
+        cardSummary:
           "Nuevas iniciativas comunitarias podrán sumarse aquí conforme avancen y tengan información suficiente para compartirse.",
         purpose: null,
         role: null,

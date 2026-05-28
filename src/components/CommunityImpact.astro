@@ -5,16 +5,13 @@ import type { CommunitySectionProps } from "@types";
 type Props = CommunitySectionProps;
 
 const { id, title, subtitle, items } = Astro.props;
-
-const getBriefText = (text: string) =>
-  text.length > 190 ? `${text.slice(0, 187).trim()}...` : text;
 ---
 
 <Section text={title} href={id}>
   <p class="mb-10 max-w-3xl text-base text-neutral">{subtitle}</p>
   <div class="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
     {
-      items.map(({ name, status, summary, impact, action }) => (
+      items.map(({ name, status, summary, cardSummary, impact, shortImpact, action }) => (
         <article class="flex h-full flex-col rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:min-h-[28rem]">
           <div class="mb-4 min-h-14">
             <h3 class="font-serif text-2xl font-semibold text-white">
@@ -22,11 +19,11 @@ const getBriefText = (text: string) =>
             </h3>
             {status && <span class="mt-2 block text-xs text-primary">{status}</span>}
           </div>
-          <p class="mb-5 text-sm text-neutral">{getBriefText(summary)}</p>
-          {impact && (
+          <p class="mb-5 text-sm text-neutral">{cardSummary ?? summary}</p>
+          {(shortImpact ?? impact) && (
             <p class="mt-auto border-t border-border pt-5 text-sm text-white/80">
               <span class="font-medium text-white">Impacto: </span>
-              {getBriefText(impact)}
+              {shortImpact ?? impact}
             </p>
           )}
           {action && (

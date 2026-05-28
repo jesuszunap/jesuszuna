@@ -5,16 +5,13 @@ import type { ProjectsSectionProps } from "@types";
 type Props = ProjectsSectionProps;
 
 const { id, title, subtitle, items } = Astro.props;
-
-const getBriefText = (text: string) =>
-  text.length > 210 ? `${text.slice(0, 207).trim()}...` : text;
 ---
 
 <Section text={title} href={id}>
   <p class="mb-10 max-w-3xl text-base text-neutral">{subtitle}</p>
   <div class="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
     {
-      items.map(({ name, badge, status, summary, technologies, action }) => (
+      items.map(({ name, badge, status, summary, cardSummary, technologies, action }) => (
         <article class="flex h-full flex-col rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:min-h-[27rem]">
           <div class="mb-5 flex min-h-8 flex-wrap items-center gap-3">
             {badge && (
@@ -27,7 +24,7 @@ const getBriefText = (text: string) =>
           <h3 class="mb-4 font-serif text-2xl font-semibold text-white">
             {name}
           </h3>
-          <p class="mb-6 text-sm text-neutral">{getBriefText(summary)}</p>
+          <p class="mb-6 text-sm text-neutral">{cardSummary ?? summary}</p>
           {technologies.length > 0 && (
             <ul class="mt-auto flex flex-wrap gap-2 pt-2 text-xs text-neutral">
               {technologies.map((technology) => (

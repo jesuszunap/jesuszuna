@@ -43,6 +43,7 @@ export interface ProjectProps {
   badge?: string;
   status: string;
   summary: string;
+  cardSummary?: string;
   problem: string | null;
   technologies: string[];
   action: LinkProps | null;
@@ -76,9 +77,11 @@ export interface CommunityItemProps {
   name: string;
   status?: string;
   summary: string;
+  cardSummary?: string;
   purpose: string | null;
   role: string | null;
   impact: string | null;
+  shortImpact?: string;
   action: LinkProps | null;
 }
 
