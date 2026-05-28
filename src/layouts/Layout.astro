@@ -5,13 +5,25 @@ import { SITE_CONFIG } from "@config";
 import Footer from "@components/Footer.astro";
 import "../styles/global.css";
 
+interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+const pageTitle = Astro.props.title;
+const pageDescription = Astro.props.description;
+const pageOgTitle = Astro.props.ogTitle;
+const pageOgDescription = Astro.props.ogDescription;
+
 const {
   brand,
   siteUrl,
-  title,
-  description,
-  ogTitle,
-  ogDescription,
+  title: defaultTitle,
+  description: defaultDescription,
+  ogTitle: defaultOgTitle,
+  ogDescription: defaultOgDescription,
   ogImage,
   navLinks,
   language,
@@ -20,6 +32,10 @@ const {
   footer,
 } = SITE_CONFIG;
 
+const title = pageTitle ?? defaultTitle;
+const description = pageDescription ?? defaultDescription;
+const ogTitle = pageOgTitle ?? pageTitle ?? defaultOgTitle;
+const ogDescription = pageOgDescription ?? pageDescription ?? defaultOgDescription;
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(ogImage, siteUrl).href;
 const isHome = Astro.url.pathname === "/";

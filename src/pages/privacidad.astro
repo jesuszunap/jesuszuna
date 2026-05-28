@@ -1,18 +1,92 @@
 ---
 import InternalPage from "@components/InternalPage.astro";
 import Layout from "@layouts/Layout.astro";
+
+const description =
+  "Información base sobre privacidad, datos de contacto, servicios externos y uso de información en jesuszuna.com.";
 ---
 
-<Layout>
-  <InternalPage title="Privacidad">
+<Layout
+  title="Privacidad | Jesús Zuña"
+  description={description}
+  ogTitle="Privacidad | Jesús Zuña"
+  ogDescription={description}
+>
+  <InternalPage title="Privacidad" note={null}>
     <p>
-      Página en preparación. Aquí se explicará cómo se gestionan los datos
-      enviados mediante el formulario de contacto y los servicios externos
-      utilizados en el sitio.
+      En jesuszuna.com se respeta la privacidad de las personas que visitan el
+      sitio. Esta página explica de forma general qué información puede
+      recopilarse, cómo se utiliza y qué canales externos pueden intervenir en
+      la experiencia del usuario.
     </p>
-    <p>
-      Esta página mencionará de forma simple el uso de Formspree, Vercel
-      Analytics, WhatsApp, GitHub y LinkedIn.
-    </p>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Datos enviados por formulario
+      </h2>
+      <p>
+        Si una persona utiliza el formulario de contacto, podrá enviar datos
+        como nombre, correo electrónico, asunto y mensaje. Esta información se
+        utilizará únicamente para responder la solicitud recibida y mantener
+        comunicación relacionada con el mensaje enviado.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Correo y WhatsApp
+      </h2>
+      <p>
+        El sitio puede incluir enlaces de contacto mediante correo electrónico y
+        WhatsApp profesional. Al usar estos canales, la comunicación se realizará
+        fuera de jesuszuna.com y estará sujeta también a las condiciones de uso
+        y privacidad de cada servicio externo.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">Analytics</h2>
+      <p>
+        El sitio puede utilizar herramientas de análisis, como Vercel Analytics,
+        para conocer información general sobre visitas, rendimiento y uso del
+        sitio. Esta información se utilizará para mejorar la experiencia,
+        optimización y funcionamiento de la web.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Enlaces externos
+      </h2>
+      <p>
+        El sitio puede incluir enlaces a plataformas externas como GitHub,
+        LinkedIn, WhatsApp u otras redes. Al acceder a esos enlaces, el usuario
+        estará navegando fuera de jesuszuna.com y deberá revisar las políticas
+        correspondientes de cada plataforma.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Uso de la información
+      </h2>
+      <p>
+        La información recibida no será vendida ni compartida con terceros para
+        fines comerciales. Se usará únicamente para contacto, respuesta a
+        mensajes, mejora del sitio y mantenimiento de la presencia digital de
+        Jesús Zuña.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">Contacto</h2>
+      <p>
+        Para consultas relacionadas con privacidad o uso de datos en este sitio,
+        se puede escribir a:
+        <a class="text-primary" href="mailto:contacto@jesuszuna.com">
+          contacto@jesuszuna.com
+        </a>
+      </p>
+    </section>
   </InternalPage>
 </Layout>

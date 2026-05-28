@@ -2,7 +2,7 @@
 interface Props {
   title: string;
   badge?: string;
-  note?: string;
+  note?: string | null;
 }
 
 const { title, badge, note = "Contenido en preparación." } = Astro.props;
@@ -28,8 +28,12 @@ const { title, badge, note = "Contenido en preparación." } = Astro.props;
     <div class="mt-8 space-y-5 text-base text-neutral">
       <slot />
     </div>
-    <p class="mt-8 border-t border-border pt-5 text-sm text-primary">
-      {note}
-    </p>
+    {
+      note && (
+        <p class="mt-8 border-t border-border pt-5 text-sm text-primary">
+          {note}
+        </p>
+      )
+    }
   </article>
 </section>
