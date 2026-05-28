@@ -12,6 +12,7 @@ const { id, title, text, form, channels } = Astro.props;
     <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:p-8">
       <p class="mb-8 text-base text-neutral">{text}</p>
       <form
+        id="contact-form"
         class="space-y-4"
         action="https://formspree.io/f/mgoqrdvp"
         method="POST"
@@ -61,7 +62,15 @@ const { id, title, text, form, channels } = Astro.props;
           Al enviar este formulario, tu mensaje será procesado mediante
           Formspree para poder responderte.
         </p>
+        <p
+          id="contact-form-status"
+          class="hidden rounded-lg border border-border bg-card-strong px-4 py-3 text-sm"
+          role="status"
+          aria-live="polite"
+        >
+        </p>
         <button
+          id="contact-form-submit"
           class="rounded-full bg-primary px-8 py-4 text-sm font-medium text-black hover:-translate-y-0.5"
           type="submit"
         >
@@ -91,3 +100,56 @@ const { id, title, text, form, channels } = Astro.props;
     </ul>
   </div>
 </Section>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>("#contact-form");
+  const statusMessage = document.querySelector<HTMLParagraphElement>(
+    "#contact-form-status",
+  );
+  const submitButton = document.querySelector<HTMLButtonElement>(
+    "#contact-form-submit",
+  );
+
+  const showStatus = (message: string, isError = false) => {
+    if (!statusMessage) return;
+
+    statusMessage.textContent = message;
+    statusMessage.classList.remove("hidden", "text-primary", "text-red-500");
+    statusMessage.classList.add(isError ? "text-red-500" : "text-primary");
+  };
+
+  contactForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!submitButton) return;
+
+    const formData = new FormData(contactForm);
+    submitButton.disabled = true;
+    submitButton.classList.add("cursor-not-allowed", "opacity-70");
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: contactForm.method,
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Formspree request failed");
+      }
+
+      contactForm.reset();
+      showStatus("Mensaje enviado correctamente. Gracias por escribirme.");
+    } catch {
+      showStatus(
+        "No se pudo enviar el mensaje. Intenta nuevamente o escríbeme por otro canal.",
+        true,
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.classList.remove("cursor-not-allowed", "opacity-70");
+    }
+  });
+</script>
