@@ -1,0 +1,18 @@
+---
+import InternalPage from "@components/InternalPage.astro";
+import { SITE_CONTENT } from "@config";
+import Layout from "@layouts/Layout.astro";
+
+const initiative = SITE_CONTENT.community.items.find(
+  ({ name }) => name === "Acceso a la universidad pública en Ecuador",
+);
+---
+
+<Layout>
+  <InternalPage
+    title="Acceso a la universidad pública en Ecuador"
+    note="Página de iniciativa en preparación."
+  >
+    <p>{initiative?.summary}</p>
+  </InternalPage>
+</Layout>

@@ -1,0 +1,15 @@
+---
+import InternalPage from "@components/InternalPage.astro";
+import { SITE_CONTENT } from "@config";
+import Layout from "@layouts/Layout.astro";
+
+const project = SITE_CONTENT.projects.items.find(
+  ({ name }) => name === "Cotizador WH",
+);
+---
+
+<Layout>
+  <InternalPage title="Cotizador WH" note="Página de proyecto en preparación.">
+    <p>{project?.summary}</p>
+  </InternalPage>
+</Layout>
