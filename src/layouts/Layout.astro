@@ -1,6 +1,7 @@
 ---
 import Navbar from "@components/Navbar.astro";
 import { Font } from "astro:assets";
+import Analytics from "@vercel/analytics/astro";
 import { SITE_CONFIG } from "@config";
 import Footer from "@components/Footer.astro";
 import "../styles/global.css";
@@ -142,6 +143,7 @@ const structuredData = [
     <meta property="twitter:title" content={ogTitle} />
     <meta property="twitter:description" content={ogDescription} />
     <meta property="twitter:image" content={ogImageUrl} />
+    <Analytics />
     <script
       is:inline
       type="application/ld+json"
