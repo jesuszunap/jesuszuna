@@ -12,8 +12,8 @@ import "../styles/global.css";
 
 <Layout>
   <Hero {...SITE_CONTENT.hero} />
-  <About {...SITE_CONTENT.about} name={SITE_CONTENT.hero.name} />
-  <SoftwareProjects projects={SITE_CONTENT.projects} />
-  <CommunityImpact />
-  <Contact />
+  <About {...SITE_CONTENT.about} />
+  <SoftwareProjects {...SITE_CONTENT.projects} />
+  <CommunityImpact {...SITE_CONTENT.community} />
+  <Contact {...SITE_CONTENT.contact} />
 </Layout>

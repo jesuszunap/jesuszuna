@@ -1,24 +1,21 @@
 ---
 import Menu from "@icons/Menu.astro";
-import { Image } from "astro:assets";
-import type { HeaderProps } from "@types";
+import type { NavbarProps } from "@types";
 
-type Props = HeaderProps;
+type Props = NavbarProps;
 
-const { siteLogo, navLinks } = Astro.props;
+const { brand, navLinks } = Astro.props;
 ---
 
 <header
   class="sticky top-0 z-50 mx-auto flex max-w-5xl animate-slide-in justify-between bg-black px-5 py-6"
 >
-  <a href="/" aria-label="Home link">
-    <Image
-      class="rounded-full"
-      src={siteLogo}
-      width="45"
-      height="45"
-      alt="website logo"
-    />
+  <a
+    href="#inicio"
+    aria-label="Ir al inicio"
+    class="font-serif text-xl font-bold text-white"
+  >
+    {brand}
   </a>
 
   <button
@@ -53,7 +50,6 @@ const { siteLogo, navLinks } = Astro.props;
 </header>
 
 <script>
-  // Toggle mobile menu
   const button = document.querySelector("#menu-button");
   const menu = document.querySelector("#main-menu");
   const navItems = document.querySelectorAll("#main-menu > ul > li > a");

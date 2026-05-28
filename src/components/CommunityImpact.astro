@@ -1,10 +1,55 @@
 ---
 import Section from "./Section.astro";
+import type { CommunitySectionProps } from "@types";
+
+type Props = CommunitySectionProps;
+
+const { id, title, subtitle, items } = Astro.props;
 ---
 
-<Section text="Comunidad e Impacto" href="community">
-  <p class="text-base text-neutral">
-    A space for community initiatives, learning, and technology with a human
-    focus.
-  </p>
+<Section text={title} href={id}>
+  <p class="mb-10 text-base text-neutral">{subtitle}</p>
+  <div class="space-y-8">
+    {
+      items.map(({ name, status, summary, purpose, role, impact, action }) => (
+        <article class="rounded-2xl border border-neutral/20 bg-black p-6">
+          <div class="mb-4 flex flex-wrap items-center gap-3">
+            <h3 class="font-serif text-2xl font-medium text-primary">
+              {name}
+            </h3>
+            {status && <span class="text-xs text-neutral">{status}</span>}
+          </div>
+          <p class="mb-5 text-base text-neutral">{summary}</p>
+          <div class="space-y-4 text-sm text-white/80">
+            {purpose && (
+              <p>
+                <span class="text-white">Propósito: </span>
+                {purpose}
+              </p>
+            )}
+            {role && (
+              <p>
+                <span class="text-white">Rol: </span>
+                {role}
+              </p>
+            )}
+            {impact && (
+              <p>
+                <span class="text-white">Impacto: </span>
+                {impact}
+              </p>
+            )}
+          </div>
+          {action && (
+            <a
+              href={action.href}
+              class="mt-6 inline-block text-sm font-medium text-white hover:text-primary"
+            >
+              {action.text}
+            </a>
+          )}
+        </article>
+      ))
+    }
+  </div>
 </Section>

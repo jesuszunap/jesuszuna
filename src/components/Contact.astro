@@ -1,9 +1,62 @@
 ---
 import Section from "./Section.astro";
+import type { ContactProps } from "@types";
+
+type Props = ContactProps;
+
+const { id, title, text, form, channels } = Astro.props;
 ---
 
-<Section text="Contacto" href="contact">
-  <p class="text-base text-neutral">
-    A simple contact section for future email and social links.
-  </p>
+<Section text={title} href={id}>
+  <div class="grid gap-10 md:grid-cols-[1fr_0.8fr]">
+    <div>
+      <p class="mb-8 text-base text-neutral">{text}</p>
+      <form class="space-y-4">
+        <input
+          class="w-full rounded-xl border border-neutral/20 bg-black px-4 py-3 text-sm text-white"
+          type="text"
+          placeholder={form.name}
+        />
+        <input
+          class="w-full rounded-xl border border-neutral/20 bg-black px-4 py-3 text-sm text-white"
+          type="email"
+          placeholder={form.email}
+        />
+        <input
+          class="w-full rounded-xl border border-neutral/20 bg-black px-4 py-3 text-sm text-white"
+          type="text"
+          placeholder={form.subject}
+        />
+        <textarea
+          class="min-h-36 w-full rounded-xl border border-neutral/20 bg-black px-4 py-3 text-sm text-white"
+          placeholder={form.message}></textarea>
+        <button
+          class="rounded-full bg-primary px-8 py-4 text-sm font-medium text-white"
+          type="button"
+        >
+          {form.button}
+        </button>
+      </form>
+    </div>
+    <ul class="space-y-5">
+      {
+        channels.map(({ text, value, href }) => (
+          <li class="border-t border-neutral/20 pt-4">
+            <p class="text-xs font-medium text-primary">{text}</p>
+            {href ? (
+              <a
+                class="mt-2 inline-block text-sm text-white hover:text-primary"
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+              >
+                {value}
+              </a>
+            ) : (
+              <p class="mt-2 text-sm text-white">{value}</p>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Section>
