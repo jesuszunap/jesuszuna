@@ -1,6 +1,21 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
+  color-scheme: light;
+  --surface-page: #f8f5ff;
+  --surface-card: rgb(255 255 255 / 0.72);
+  --surface-card-strong: rgb(255 255 255 / 0.88);
+  --surface-soft: #f0eaff;
+  --text-main: #21182d;
+  --text-muted: #675c73;
+  --accent-main: #6d3fd1;
+  --accent-soft: #e8ddff;
+  --border-soft: rgb(109 63 209 / 0.18);
+}
+
+html.light {
   color-scheme: light;
   --surface-page: #f8f5ff;
   --surface-card: rgb(255 255 255 / 0.72);
@@ -26,6 +41,19 @@
     --accent-soft: rgb(103 212 255 / 0.12);
     --border-soft: rgb(103 212 255 / 0.18);
   }
+}
+
+html.dark {
+  color-scheme: dark;
+  --surface-page: #0d1218;
+  --surface-card: rgb(20 29 38 / 0.72);
+  --surface-card-strong: rgb(24 34 44 / 0.88);
+  --surface-soft: #101a24;
+  --text-main: #e7edf4;
+  --text-muted: #9babbb;
+  --accent-main: #67d4ff;
+  --accent-soft: rgb(103 212 255 / 0.12);
+  --border-soft: rgb(103 212 255 / 0.18);
 }
 
 @theme inline {

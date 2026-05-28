@@ -20,47 +20,138 @@ const getNavHref = (href: string) => (isHome ? href : `/${href}`);
     {brand}
   </a>
 
-  <button
-    type="button"
-    id="menu-button"
-    class="px-1.5 text-neutral hover:text-primary lg:hidden"
-    aria-expanded="false"
-    aria-controls="main-menu"
-    aria-label="Abrir menú de navegación"
-  >
-    <Menu />
-  </button>
+  <div class="flex items-center gap-2 lg:gap-3">
+    <nav
+      class="absolute top-18 right-5 z-60 hidden rounded-lg border border-border bg-[#fbf9ff]/96 px-4 py-5 text-neutral shadow-2xl ring-1 ring-black/5 backdrop-blur-xl lg:static lg:block lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:ring-0 lg:backdrop-blur-0 dark:bg-[#08121c]/96"
+      id="main-menu"
+    >
+      <ul class="gap-2 lg:flex">
+        {
+          navLinks.map((link) => (
+            <li class="relative">
+              <a
+                class={`nav-item relative block p-2 text-sm font-medium transition-all duration-500 after:absolute after:bottom-0 after:left-2/4 after:h-1 after:w-1 after:-translate-x-2/4 after:rounded-full after:bg-primary after:opacity-0 after:content-[''] hover:text-white`}
+                href={getNavHref(link.href)}
+              >
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
 
-  <nav
-    class="absolute top-18 right-5 z-60 hidden rounded-lg border border-border bg-[#fbf9ff]/96 px-4 py-5 text-neutral shadow-2xl ring-1 ring-black/5 backdrop-blur-xl lg:static lg:block lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:ring-0 lg:backdrop-blur-0 dark:bg-[#08121c]/96"
-    id="main-menu"
-  >
-    <ul class="gap-2 lg:flex">
-      {
-        navLinks.map((link) => (
-          <li class="relative">
-            <a
-              class={`nav-item relative block p-2 text-sm font-medium transition-all duration-500 after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4 after:text-primary after:opacity-0 after:content-['•'] hover:text-white`}
-              href={getNavHref(link.href)}
-            >
-              {link.text}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+    <button
+      type="button"
+      id="theme-button"
+      class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card-strong text-neutral shadow-sm backdrop-blur-md hover:border-primary hover:text-primary"
+      aria-label="Cambiar a modo oscuro"
+      title="Cambiar a modo oscuro"
+    >
+      <svg
+        data-theme-icon="dark"
+        aria-hidden="true"
+        class="h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20.4 14.7A8.5 8.5 0 0 1 9.3 3.6 8.5 8.5 0 1 0 20.4 14.7Z"></path>
+      </svg>
+      <svg
+        data-theme-icon="light"
+        aria-hidden="true"
+        class="hidden h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2"></path>
+        <path d="M12 20v2"></path>
+        <path d="m4.9 4.9 1.4 1.4"></path>
+        <path d="m17.7 17.7 1.4 1.4"></path>
+        <path d="M2 12h2"></path>
+        <path d="M20 12h2"></path>
+        <path d="m6.3 17.7-1.4 1.4"></path>
+        <path d="m19.1 4.9-1.4 1.4"></path>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      id="menu-button"
+      class="px-1.5 text-neutral hover:text-primary lg:hidden"
+      aria-expanded="false"
+      aria-controls="main-menu"
+      aria-label="Abrir menú de navegación"
+    >
+      <Menu />
+    </button>
+  </div>
 </header>
 
 <script>
   const button = document.querySelector<HTMLButtonElement>("#menu-button");
+  const themeButton =
+    document.querySelector<HTMLButtonElement>("#theme-button");
+  const lightIcon = document.querySelector<SVGElement>(
+    '[data-theme-icon="light"]',
+  );
+  const darkIcon = document.querySelector<SVGElement>(
+    '[data-theme-icon="dark"]',
+  );
   const menu = document.querySelector("#main-menu");
   const navItems = document.querySelectorAll("#main-menu > ul > li > a");
   const sections = [
     ...document.querySelectorAll<HTMLElement>("section[id]"),
   ];
+  const themeStorageKey = "theme";
   let lockedSectionId: string | null = null;
   let unlockTimer: number | undefined;
+
+  const getPreferredTheme = () => {
+    const savedTheme = localStorage.getItem(themeStorageKey);
+    if (savedTheme === "light" || savedTheme === "dark") {
+      return savedTheme;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const updateThemeButton = (theme: string) => {
+    const isDark = theme === "dark";
+    themeButton?.setAttribute(
+      "aria-label",
+      isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro",
+    );
+    themeButton?.setAttribute(
+      "title",
+      isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro",
+    );
+    lightIcon?.classList.toggle("hidden", !isDark);
+    darkIcon?.classList.toggle("hidden", isDark);
+  };
+
+  const applyTheme = (theme: string, shouldPersist = false) => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+    document.documentElement.style.colorScheme = theme;
+
+    if (shouldPersist) {
+      localStorage.setItem(themeStorageKey, theme);
+    }
+
+    updateThemeButton(theme);
+  };
 
   const setActiveNavItem = (sectionId: string) => {
     navItems.forEach((item) => {
@@ -99,6 +190,22 @@ const getNavHref = (href: string) => (isHome ? href : `/${href}`);
     );
   };
 
+  themeButton?.addEventListener("click", () => {
+    const nextTheme = document.documentElement.classList.contains("dark")
+      ? "light"
+      : "dark";
+
+    applyTheme(nextTheme, true);
+  });
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      if (!localStorage.getItem(themeStorageKey)) {
+        applyTheme(getPreferredTheme());
+      }
+    });
+
   button?.addEventListener("click", toggleMenu);
   navItems.forEach((item) => {
     item?.addEventListener("click", () => {
@@ -128,6 +235,7 @@ const getNavHref = (href: string) => (isHome ? href : `/${href}`);
       button?.focus();
     }
   });
+  applyTheme(getPreferredTheme());
   updateActiveNavItem();
 </script>
 
