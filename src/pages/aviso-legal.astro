@@ -1,0 +1,111 @@
+---
+import InternalPage from "@components/InternalPage.astro";
+import Layout from "@layouts/Layout.astro";
+
+const description =
+  "Información base sobre el uso de jesuszuna.com, titularidad, proyectos, enlaces externos y modificaciones del sitio.";
+---
+
+<Layout
+  title="Aviso legal | Jesús Zuña"
+  description={description}
+  ogTitle="Aviso legal | Jesús Zuña"
+  ogDescription={description}
+>
+  <InternalPage title="Aviso legal" note={null}>
+    <p>
+      jesuszuna.com es el sitio web personal de Jesús Zuña. Su finalidad es
+      presentar información sobre su perfil, proyectos de software, iniciativas
+      de Comunidad e Impacto y canales de contacto profesional.
+    </p>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Responsable del sitio
+      </h2>
+      <ul class="space-y-2">
+        <li>Responsable: Jesús Zuña</li>
+        <li>Sitio web: https://jesuszuna.com</li>
+        <li>
+          Correo de contacto:
+          <a class="text-primary" href="mailto:contacto@jesuszuna.com">
+            contacto@jesuszuna.com
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Finalidad del sitio
+      </h2>
+      <p>
+        El contenido publicado en este sitio tiene fines informativos,
+        personales y profesionales. La información presentada busca mostrar
+        proyectos, trayectoria, intereses, iniciativas y formas de contacto.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Contenido y propiedad intelectual
+      </h2>
+      <p>
+        Los textos, imágenes, diseños, logos, nombres de proyectos y demás
+        elementos publicados en el sitio pertenecen a Jesús Zuña o se utilizan
+        con autorización, salvo que se indique lo contrario.
+      </p>
+      <p>
+        El logo principal y los logos de proyectos serán desarrollados con apoyo
+        de su hermana diseñadora gráfica. Los íconos generales del sitio podrán
+        provenir de librerías externas, respetando sus respectivas licencias.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Proyectos e información técnica
+      </h2>
+      <p>
+        La información sobre proyectos de software se presenta con fines
+        descriptivos. Las características, estados, tecnologías o enlaces de
+        cada proyecto pueden cambiar con el tiempo.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Iniciativas comunitarias
+      </h2>
+      <p>
+        La información relacionada con iniciativas de Comunidad e Impacto se
+        presenta como parte del perfil personal y comunitario de Jesús Zuña. Las
+        cifras o datos de alcance podrán actualizarse conforme exista
+        información más reciente o verificable.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Enlaces externos
+      </h2>
+      <p>
+        jesuszuna.com puede incluir enlaces a sitios externos como GitHub,
+        LinkedIn, WhatsApp, demos, repositorios u otras plataformas. Jesús Zuña
+        no se responsabiliza por el contenido, disponibilidad o políticas de
+        privacidad de sitios externos.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="font-serif text-2xl font-semibold text-white">
+        Modificaciones
+      </h2>
+      <p>
+        El contenido de este sitio puede actualizarse, corregirse o modificarse
+        en cualquier momento para mejorar la información, diseño, seguridad o
+        funcionamiento general.
+      </p>
+    </section>
+  </InternalPage>
+</Layout>

@@ -1,44 +1,76 @@
 @import "tailwindcss";
 
-@theme inline {
-  --font-sans: var(--font-be-vietnam-pro);
-  --font-serif: var(--font-gabarito);
+:root {
+  color-scheme: light;
+  --surface-page: #f8f5ff;
+  --surface-card: rgb(255 255 255 / 0.72);
+  --surface-card-strong: rgb(255 255 255 / 0.88);
+  --surface-soft: #f0eaff;
+  --text-main: #21182d;
+  --text-muted: #675c73;
+  --accent-main: #6d3fd1;
+  --accent-soft: #e8ddff;
+  --border-soft: rgb(109 63 209 / 0.18);
+}
 
-  --color-primary: #2563eb;
-  --color-neutral: #94a3b8;
-  --color-white: #e2e8f0;
-  --color-black: #0e141b;
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface-page: #0d1218;
+    --surface-card: rgb(20 29 38 / 0.72);
+    --surface-card-strong: rgb(24 34 44 / 0.88);
+    --surface-soft: #101a24;
+    --text-main: #e7edf4;
+    --text-muted: #9babbb;
+    --accent-main: #67d4ff;
+    --accent-soft: rgb(103 212 255 / 0.12);
+    --border-soft: rgb(103 212 255 / 0.18);
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-sora);
+
+  --color-primary: var(--accent-main);
+  --color-neutral: var(--text-muted);
+  --color-white: var(--text-main);
+  --color-black: var(--surface-page);
+  --color-card: var(--surface-card);
+  --color-card-strong: var(--surface-card-strong);
+  --color-soft: var(--surface-soft);
+  --color-border: var(--border-soft);
 
   --text-xs: 0.875rem;
   --text-xs--line-height: 1.125rem;
   --text-sm: 1rem;
-  --text-sm--line-height: 1.25rem;
-  --text-base: 1.125rem;
-  --text-base--line-height: 1.625rem;
-  --text-lg: 1.25rem;
-  --text-lg--line-height: 1.75rem;
-  --text-xl: 1.5rem;
-  --text-xl--line-height: 1.813rem;
+  --text-sm--line-height: 1.4rem;
+  --text-base: 1.08rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.2rem;
+  --text-lg--line-height: 1.85rem;
+  --text-xl: 1.45rem;
+  --text-xl--line-height: 1.9rem;
   --text-2xl: 1.75rem;
-  --text-2xl--line-height: 2.125rem;
+  --text-2xl--line-height: 2.2rem;
   --text-3xl: 2rem;
-  --text-3xl--line-height: 2.375rem;
-  --text-4xl: 2.25rem;
-  --text-4xl--line-height: 2.688rem;
-  --text-5xl: 2.5rem;
-  --text-5xl--line-height: 3rem;
-  --text-6xl: 3rem;
-  --text-6xl--line-height: 3.625rem;
-  --text-7xl: 3.75rem;
-  --text-7xl--line-height: 1;
-  --text-8xl: 4.5rem;
-  --text-8xl--line-height: 4.875rem;
-  --text-9xl: 6rem;
-  --text-9xl--line-height: 6.625rem;
+  --text-3xl--line-height: 2.45rem;
+  --text-4xl: 2.35rem;
+  --text-4xl--line-height: 2.85rem;
+  --text-5xl: 2.8rem;
+  --text-5xl--line-height: 3.25rem;
+  --text-6xl: 3.35rem;
+  --text-6xl--line-height: 3.85rem;
+  --text-7xl: 4rem;
+  --text-7xl--line-height: 1.08;
+  --text-8xl: 4.8rem;
+  --text-8xl--line-height: 1.05;
+  --text-9xl: 5.8rem;
+  --text-9xl--line-height: 1;
 
-  --tracking-tightest: -2px;
-  --tracking-tighter: -1px;
-  --tracking-tight: -0.25px;
+  --tracking-tightest: 0;
+  --tracking-tighter: 0;
+  --tracking-tight: 0;
 
   --animate-slide-in: slide-in 600ms ease both;
 
@@ -50,4 +82,35 @@
       transform: translateY(0);
     }
   }
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+html {
+  background:
+    radial-gradient(circle at 18% 0%, var(--accent-soft), transparent 32rem),
+    linear-gradient(180deg, var(--surface-page), var(--surface-soft));
+  background-attachment: fixed;
+}
+
+body {
+  background: transparent;
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+:where(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--accent-main);
+  outline-offset: 4px;
 }

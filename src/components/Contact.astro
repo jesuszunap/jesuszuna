@@ -1,0 +1,177 @@
+---
+import Section from "./Section.astro";
+import type { ContactProps } from "@types";
+
+type Props = ContactProps;
+
+const { id, title, text, form, channels } = Astro.props;
+---
+
+<Section text={title} href={id}>
+  <div class="grid gap-8 md:grid-cols-[1fr_0.8fr]">
+    <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:p-8">
+      <p class="mb-8 text-base text-neutral">{text}</p>
+      <form
+        id="contact-form"
+        class="space-y-4"
+        action="https://formspree.io/f/mgoqrdvp"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="_subject"
+          value="Nuevo mensaje desde jesuszuna.com"
+        />
+        <input
+          class="hidden"
+          type="text"
+          name="_gotcha"
+          tabindex="-1"
+          autocomplete="off"
+        />
+        <div class="space-y-2">
+          <label class="block text-xs font-medium text-primary" for="contact-name">
+            Nombre
+          </label>
+          <input
+            id="contact-name"
+            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            type="text"
+            name="name"
+            placeholder={form.name}
+            autocomplete="name"
+            required
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-medium text-primary" for="contact-email">
+            Correo
+          </label>
+          <input
+            id="contact-email"
+            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            type="email"
+            name="email"
+            placeholder={form.email}
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-medium text-primary" for="contact-subject">
+            Asunto
+          </label>
+          <input
+            id="contact-subject"
+            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            type="text"
+            name="subject"
+            placeholder={form.subject}
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-medium text-primary" for="contact-message">
+            Mensaje
+          </label>
+          <textarea
+            id="contact-message"
+            class="min-h-36 w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            name="message"
+            placeholder={form.message}
+            required></textarea>
+        </div>
+        <p class="text-xs text-neutral">
+          Al enviar este formulario, tu mensaje será procesado mediante
+          Formspree para poder responderte.
+        </p>
+        <p
+          id="contact-form-status"
+          class="hidden rounded-lg border border-border bg-card-strong px-4 py-3 text-sm"
+          role="status"
+          aria-live="polite"
+        >
+        </p>
+        <button
+          id="contact-form-submit"
+          class="rounded-full bg-primary px-8 py-4 text-sm font-medium text-black hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+          type="submit"
+        >
+          {form.button}
+        </button>
+      </form>
+    </div>
+    <ul class="space-y-4">
+      {
+        channels.map(({ text, value, href }) => (
+          <li class="rounded-lg border border-border bg-card p-5 shadow-sm backdrop-blur-md">
+            <p class="text-xs font-medium text-primary">{text}</p>
+            {href ? (
+              <a
+                class="mt-2 inline-block text-sm text-white hover:text-primary"
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+              >
+                {value}
+              </a>
+            ) : (
+              <p class="mt-2 text-sm text-white">{value}</p>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Section>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>("#contact-form");
+  const statusMessage = document.querySelector<HTMLParagraphElement>(
+    "#contact-form-status",
+  );
+  const submitButton = document.querySelector<HTMLButtonElement>(
+    "#contact-form-submit",
+  );
+
+  const showStatus = (message: string, isError = false) => {
+    if (!statusMessage) return;
+
+    statusMessage.textContent = message;
+    statusMessage.classList.remove("hidden", "text-primary", "text-red-600");
+    statusMessage.classList.add(isError ? "text-red-600" : "text-primary");
+  };
+
+  contactForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!submitButton) return;
+
+    const formData = new FormData(contactForm);
+    submitButton.disabled = true;
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: contactForm.method,
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Formspree request failed");
+      }
+
+      contactForm.reset();
+      showStatus("Mensaje enviado correctamente. Gracias por escribirme.");
+    } catch {
+      showStatus(
+        "No se pudo enviar el mensaje. Intenta nuevamente o escríbeme por otro canal.",
+        true,
+      );
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+</script>
