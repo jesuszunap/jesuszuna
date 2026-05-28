@@ -7,7 +7,8 @@ type Props = Pick<SiteConfig, "author" | "brand" | "socialLinks"> & {
 
 const { brand, footer } = Astro.props;
 const isHome = Astro.url.pathname === "/";
-const getNavHref = (href: string) => (isHome ? href : `/${href}`);
+const getNavHref = (href: string) =>
+  href.startsWith("#") && !isHome ? `/${href}` : href;
 ---
 
 <footer class="w-full border-t border-border px-5 pt-10 pb-8 text-white">

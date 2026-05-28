@@ -5,6 +5,7 @@ const mainNavLinks = [
   { text: "Sobre mí", href: "#sobre-mi" },
   { text: "Proyectos", href: "#proyectos" },
   { text: "Comunidad e Impacto", href: "#comunidad" },
+  { text: "Blog", href: "/blog" },
   { text: "Contacto", href: "#contacto" },
 ];
 

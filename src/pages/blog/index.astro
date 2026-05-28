@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import { SITE_CONFIG } from "@config";
+
+const description =
+  "Reflexiones, aprendizajes y avances sobre tecnología, proyectos personales, comunidad y crecimiento.";
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("es-EC", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+---
+
+<Layout
+  title={`Blog | ${SITE_CONFIG.brand}`}
+  description={description}
+  ogTitle={`Blog | ${SITE_CONFIG.brand}`}
+  ogDescription={description}
+>
+  <section class="py-16 md:py-24">
+    <a class="mb-10 inline-block text-sm font-medium text-primary" href="/">
+      Volver al inicio
+    </a>
+
+    <header class="max-w-3xl">
+      <h1 class="font-serif text-4xl font-bold text-white md:text-5xl">
+        Blog
+      </h1>
+      <p class="mt-5 text-lg text-neutral">{description}</p>
+    </header>
+
+    <div class="mt-10 grid gap-5">
+      {
+        posts.map((post) => (
+          <article class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:p-8">
+            <div class="flex flex-wrap items-center gap-3 text-xs text-neutral">
+              <time datetime={post.data.date.toISOString()}>
+                {formatDate(post.data.date)}
+              </time>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <span>{post.data.tags[0]}</span>
+              )}
+            </div>
+            <h2 class="mt-4 font-serif text-2xl font-bold text-white">
+              <a class="hover:text-primary" href={`/blog/${post.id}`}>
+                {post.data.title}
+              </a>
+            </h2>
+            <p class="mt-4 max-w-3xl text-base text-neutral">
+              {post.data.description}
+            </p>
+            <a
+              class="mt-6 inline-block text-sm font-medium text-primary"
+              href={`/blog/${post.id}`}
+            >
+              Leer artículo
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
