@@ -11,28 +11,59 @@ const { id, title, text, form, channels } = Astro.props;
   <div class="grid gap-8 md:grid-cols-[1fr_0.8fr]">
     <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:p-8">
       <p class="mb-8 text-base text-neutral">{text}</p>
-      <form class="space-y-4">
+      <form
+        class="space-y-4"
+        action="https://formspree.io/f/mgoqrdvp"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="_subject"
+          value="Nuevo mensaje desde jesuszuna.com"
+        />
+        <input
+          class="hidden"
+          type="text"
+          name="_gotcha"
+          tabindex="-1"
+          autocomplete="off"
+        />
         <input
           class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
           type="text"
+          name="name"
           placeholder={form.name}
+          autocomplete="name"
+          required
         />
         <input
           class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
           type="email"
+          name="email"
           placeholder={form.email}
+          autocomplete="email"
+          required
         />
         <input
           class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
           type="text"
+          name="subject"
           placeholder={form.subject}
+          autocomplete="off"
+          required
         />
         <textarea
           class="min-h-36 w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
-          placeholder={form.message}></textarea>
+          name="message"
+          placeholder={form.message}
+          required></textarea>
+        <p class="text-xs text-neutral">
+          Al enviar este formulario, tu mensaje será procesado mediante
+          Formspree para poder responderte.
+        </p>
         <button
           class="rounded-full bg-primary px-8 py-4 text-sm font-medium text-black hover:-translate-y-0.5"
-          type="button"
+          type="submit"
         >
           {form.button}
         </button>
