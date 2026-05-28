@@ -1,15 +1,15 @@
 export interface SiteConfig extends NavbarProps {
   brand: string;
+  siteUrl: string;
   title: string;
   description: string;
   ogTitle: string;
   ogDescription: string;
-  lang: string;
+  ogImage: string;
+  language: string;
   author: string;
   email: string;
   socialLinks: { text: string; href: string }[];
-  socialImage: string;
-  canonicalURL?: string;
   footer: FooterProps;
 }
 

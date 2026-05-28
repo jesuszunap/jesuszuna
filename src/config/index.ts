@@ -10,16 +10,16 @@ const mainNavLinks = [
 
 export const SITE_CONFIG: SiteConfig = {
   brand: "Jesús Zuña",
+  siteUrl: "https://jesuszuna.com",
   title: "Jesús Zuña | Software, proyectos y comunidad",
-  author: "Jesús Zuña Pacheco",
+  author: "Jesús Zuña",
   description:
     "Sitio personal de Jesús Zuña, estudiante de Ingeniería en Software y desarrollador enfocado en crear soluciones digitales, automatizaciones, proyectos de software e iniciativas de Comunidad e Impacto.",
   ogTitle: "Jesús Zuña | Software, proyectos y comunidad",
   ogDescription:
     "Desarrollador de software y estudiante de Ingeniería en Software. Proyectos, automatizaciones e iniciativas de Comunidad e Impacto.",
-  lang: "es",
-  canonicalURL: "https://jesuszuna.com",
-  socialImage: "/zen-og.png",
+  ogImage: "/og-image.png",
+  language: "es",
   email: "contacto@jesuszuna.com",
   navLinks: mainNavLinks,
   socialLinks: [

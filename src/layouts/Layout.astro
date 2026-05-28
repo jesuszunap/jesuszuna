@@ -7,30 +7,79 @@ import "../styles/global.css";
 
 const {
   brand,
+  siteUrl,
   title,
   description,
   ogTitle,
   ogDescription,
+  ogImage,
   navLinks,
-  lang,
+  language,
   author,
   socialLinks,
   footer,
-  socialImage,
-  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
 } = SITE_CONFIG;
 
-const ogImgUrl = canonicalURL + socialImage;
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
+const isHome = Astro.url.pathname === "/";
+const sameAs = socialLinks.map(({ href }) => href);
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: brand,
+    alternateName: ["Jesus Zuna", "Jesus Zuna Pacheco", "Jesús Zuña Pacheco"],
+    url: siteUrl,
+    jobTitle:
+      "Desarrollador de software y estudiante de Ingeniería en Software",
+    email: SITE_CONFIG.email,
+    sameAs,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: brand,
+    url: siteUrl,
+    description,
+    inLanguage: language,
+    publisher: {
+      "@type": "Person",
+      name: brand,
+    },
+  },
+  ...(isHome
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          name: title,
+          url: canonicalURL,
+          description,
+          inLanguage: language,
+          mainEntity: {
+            "@type": "Person",
+            name: brand,
+            url: siteUrl,
+            sameAs,
+          },
+        },
+      ]
+    : []),
+];
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-pt-16 scroll-smooth">
+<html lang={language} class="scroll-pt-16 scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f8f5ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1218" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
@@ -40,13 +89,20 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImgUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:type" content={isHome ? "profile" : "website"} />
+    <meta property="og:locale" content="es_EC" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={ogTitle} />
     <meta property="twitter:description" content={ogDescription} />
-    <meta property="twitter:image" content={ogImgUrl} />
+    <meta property="twitter:image" content={ogImageUrl} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
   </head>
   <body class="min-h-screen font-sans text-white">
     <Navbar brand={brand} navLinks={navLinks} />

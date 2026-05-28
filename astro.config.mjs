@@ -2,9 +2,11 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { fontProviders } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://jesuszuna.com",
   fonts: [
     {
       provider: fontProviders.fontsource(),
@@ -22,4 +24,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  integrations: [sitemap()],
 });
