@@ -8,8 +8,7 @@ const description =
 const assetPath = "/images/projects/qx-extractor-quipux";
 const downloadUrl =
   "https://github.com/jesuszunap/qx-extractor-quipux/releases/download/v3.0.0/QX-Extractor-Quipux-Setup-3.0.0.exe";
-const manualUrl =
-  "https://github.com/jesuszunap/qx-extractor-quipux/releases/download/v3.0.0/MANUAL_USUARIO_QX_3.0.0.md";
+const manualUrl = "/downloads/MANUAL_USUARIO_QX_3.0.0.pdf";
 const releaseUrl = "https://github.com/jesuszunap/qx-extractor-quipux/releases";
 
 const badges = ["Windows", "Python", "Selenium", "Excel", "IA local opcional"];
@@ -144,7 +143,7 @@ const status = [
   "Plataforma: Windows",
   "Instalador principal disponible",
   "Componente IA opcional separado",
-  "Manual de usuario disponible en Markdown",
+  "Manual de usuario disponible en PDF",
   "Release oficial publicado en GitHub",
 ];
 
@@ -155,8 +154,9 @@ const downloads = [
     primary: true,
   },
   {
-    label: "Leer manual de usuario",
+    label: "Ver manual de usuario",
     href: manualUrl,
+    newTab: true,
   },
   {
     label: "Ver release en GitHub",
@@ -211,8 +211,13 @@ const downloads = [
           <a class="btn-primary" href={downloadUrl}>
             Descargar QX 3.0.0
           </a>
-          <a class="btn-secondary" href={manualUrl}>
-            Leer manual de usuario
+          <a
+            class="btn-secondary"
+            href={manualUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver manual de usuario
           </a>
         </div>
         <a class="link-action mt-5 inline-flex" href={releaseUrl}>
@@ -499,6 +504,8 @@ const downloads = [
                       : "btn-secondary"
                 }
                 href={item.href}
+                target={item.newTab ? "_blank" : undefined}
+                rel={item.newTab ? "noopener noreferrer" : undefined}
               >
                 {item.label}
               </a>
@@ -507,10 +514,10 @@ const downloads = [
         </div>
         <ul class="mt-6 space-y-2 text-xs text-neutral">
           <li>QX-Extractor-Quipux-Setup-3.0.0.exe</li>
-          <li>MANUAL_USUARIO_QX_3.0.0.md</li>
+          <li>MANUAL_USUARIO_QX_3.0.0.pdf</li>
         </ul>
         <p class="mt-4 text-xs text-neutral">
-          El manual actualmente está disponible en formato Markdown.
+          El manual está disponible en formato PDF para consulta desde el navegador.
         </p>
       </div>
     </section>

@@ -156,12 +156,35 @@ const getNavHref = (href: string) =>
 
   const setActiveNavItem = (sectionId: string) => {
     navItems.forEach((item) => {
-      if (item.getAttribute("href") === `#${sectionId}`) {
+      const itemSectionId = getItemSectionId(item);
+      if (itemSectionId === sectionId) {
         item.classList.add("text-white", "lg:after:opacity-100");
       } else {
         item.classList.remove("text-white", "lg:after:opacity-100");
       }
     });
+  };
+
+  const getItemSectionId = (item: Element) => {
+    const href = item.getAttribute("href");
+
+    if (!href) {
+      return null;
+    }
+
+    if (href === "/" || href === "#inicio" || href === "/#inicio") {
+      return "inicio";
+    }
+
+    if (href.startsWith("#")) {
+      return href.slice(1);
+    }
+
+    if (href.startsWith("/#")) {
+      return href.slice(2);
+    }
+
+    return null;
   };
 
   const updateActiveNavItem = () => {
@@ -210,7 +233,7 @@ const getNavHref = (href: string) =>
   button?.addEventListener("click", toggleMenu);
   navItems.forEach((item) => {
     item?.addEventListener("click", () => {
-      const sectionId = item.getAttribute("href")?.replace("#", "");
+      const sectionId = getItemSectionId(item);
       if (sectionId) {
         lockedSectionId = sectionId;
         setActiveNavItem(sectionId);
@@ -239,10 +262,3 @@ const getNavHref = (href: string) =>
   applyTheme(getPreferredTheme());
   updateActiveNavItem();
 </script>
-
-<style>
-  header {
-    animation-timeline: scroll();
-    animation-range: 0 650px;
-  }
-</style>
