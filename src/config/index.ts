@@ -124,7 +124,7 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         name: "Cotizador WH",
-        status: "En planificación / MVP pendiente",
+        status: "En preparación",
         summary:
           "Cotizador WH es una herramienta web pensada para calcular cotizaciones de forma rápida, clara y accesible desde el celular, reemplazando un flujo previo basado en AppSheet por una experiencia más ligera, personalizada y fácil de mantener.",
         cardSummary:

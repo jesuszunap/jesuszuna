@@ -9,7 +9,7 @@ const { id, title, text, form, channels } = Astro.props;
 
 <Section text={title} href={id}>
   <div class="grid gap-8 md:grid-cols-[1fr_0.8fr]">
-    <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md md:p-8">
+    <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl md:p-8">
       <p class="mb-8 text-base text-neutral">{text}</p>
       <form
         id="contact-form"
@@ -35,7 +35,7 @@ const { id, title, text, form, channels } = Astro.props;
           </label>
           <input
             id="contact-name"
-            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral motion-safe:transition motion-safe:duration-200 focus:border-primary focus:shadow-sm"
             type="text"
             name="name"
             placeholder={form.name}
@@ -49,7 +49,7 @@ const { id, title, text, form, channels } = Astro.props;
           </label>
           <input
             id="contact-email"
-            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral motion-safe:transition motion-safe:duration-200 focus:border-primary focus:shadow-sm"
             type="email"
             name="email"
             placeholder={form.email}
@@ -63,7 +63,7 @@ const { id, title, text, form, channels } = Astro.props;
           </label>
           <input
             id="contact-subject"
-            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            class="w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral motion-safe:transition motion-safe:duration-200 focus:border-primary focus:shadow-sm"
             type="text"
             name="subject"
             placeholder={form.subject}
@@ -77,7 +77,7 @@ const { id, title, text, form, channels } = Astro.props;
           </label>
           <textarea
             id="contact-message"
-            class="min-h-36 w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral focus:border-primary"
+            class="min-h-36 w-full rounded-lg border border-border bg-card-strong px-4 py-3 text-sm text-white outline-none placeholder:text-neutral motion-safe:transition motion-safe:duration-200 focus:border-primary focus:shadow-sm"
             name="message"
             placeholder={form.message}
             required></textarea>
@@ -95,7 +95,7 @@ const { id, title, text, form, channels } = Astro.props;
         </p>
         <button
           id="contact-form-submit"
-          class="rounded-full bg-primary px-8 py-4 text-sm font-medium text-black hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+          class="rounded-full bg-primary px-8 py-4 text-sm font-medium text-black motion-safe:transition motion-safe:duration-200 hover:shadow-lg motion-safe:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
           type="submit"
         >
           {form.button}
@@ -105,11 +105,11 @@ const { id, title, text, form, channels } = Astro.props;
     <ul class="space-y-4">
       {
         channels.map(({ text, value, href }) => (
-          <li class="rounded-lg border border-border bg-card p-5 shadow-sm backdrop-blur-md">
+          <li class="rounded-lg border border-border bg-card p-5 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-lg motion-safe:hover:-translate-y-1">
             <p class="text-xs font-medium text-primary">{text}</p>
             {href ? (
               <a
-                class="mt-2 inline-block text-sm text-white hover:text-primary"
+                class="mt-2 inline-block text-sm text-white motion-safe:transition motion-safe:duration-200 hover:text-primary motion-safe:hover:translate-x-1"
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
               >

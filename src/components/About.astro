@@ -16,11 +16,11 @@ const { id, title, description, facts, secondaryLink } = Astro.props;
         ))
       }
     </div>
-    <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md">
+    <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl motion-safe:hover:-translate-y-1">
       <dl class="grid gap-5">
         {
           facts.map(({ label, value }) => (
-            <div class="border-t border-border pt-4 first:border-t-0 first:pt-0">
+            <div class="border-t border-border pt-4 motion-safe:transition motion-safe:duration-200 hover:border-primary first:border-t-0 first:pt-0">
               <dt class="text-xs font-medium text-primary">{label}</dt>
               <dd class="mt-2 text-sm text-white">{value}</dd>
             </div>
@@ -28,7 +28,7 @@ const { id, title, description, facts, secondaryLink } = Astro.props;
         }
       </dl>
       <a
-        class="mt-7 inline-block text-sm font-medium text-white hover:text-primary"
+        class="mt-7 inline-block text-sm font-medium text-white motion-safe:transition motion-safe:duration-200 hover:text-primary motion-safe:hover:translate-x-1"
         href={secondaryLink.href}
       >
         {secondaryLink.text}
