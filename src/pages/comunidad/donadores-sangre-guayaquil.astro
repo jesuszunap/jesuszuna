@@ -1,18 +1,411 @@
 ---
-import InternalPage from "@components/InternalPage.astro";
-import { SITE_CONTENT } from "@config";
 import Layout from "@layouts/Layout.astro";
 
-const initiative = SITE_CONTENT.community.items.find(
-  ({ name }) => name === "Donadores de sangre en Guayaquil",
-);
+const title = "Donadores de sangre en Guayaquil | Jesús Zuña";
+const description =
+  "Iniciativa comunitaria en Facebook que ayuda a difundir solicitudes de donación de sangre en Guayaquil y reúne a personas interesadas en colaborar.";
+
+const groupUrl = "https://www.facebook.com/groups/donadoresgye/";
+const coverUrl = "/images/community/donadores-sangre-guayaquil/cover.webp";
+
+const steps = [
+  {
+    title: "Solicitudes de donación",
+    text: "Personas o familiares pueden compartir publicaciones relacionadas con necesidades de donación de sangre en Guayaquil.",
+  },
+  {
+    title: "Donantes interesados",
+    text: "Quienes desean colaborar pueden revisar las publicaciones y ofrecer apoyo cuando esté dentro de sus posibilidades.",
+  },
+  {
+    title: "Información más ordenada",
+    text: "La administración ayuda a mantener preguntas, filtros y publicaciones más claras para que el grupo sea útil y responsable.",
+  },
+];
+
+const facts = [
+  "Desde 2016",
+  "Grupo de Facebook",
+  "Alrededor de 500 personas",
+  "Administración y organización comunitaria",
+];
 ---
 
-<Layout>
-  <InternalPage
-    title="Donadores de sangre en Guayaquil"
-    note="Página de iniciativa en preparación."
-  >
-    <p>{initiative?.summary}</p>
-  </InternalPage>
+<Layout
+  title={title}
+  description={description}
+  ogTitle="Donadores de sangre en Guayaquil"
+  ogDescription={description}
+  ogImage={coverUrl}
+>
+  <article class="pt-8 pb-14 md:pt-12 md:pb-20">
+    <a class="mb-8 inline-block text-sm font-medium text-primary" href="/#comunidad">
+      Volver a Comunidad e Impacto
+    </a>
+
+    <section class="grid items-center gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+      <figure class="media-card hero-media overflow-hidden rounded-lg border border-border bg-card shadow-sm lg:order-2">
+        <img
+          class="block w-full"
+          src={coverUrl}
+          alt="Banner de Donadores de sangre en Guayaquil, comunidad de Facebook para difundir solicitudes de donación de sangre en la ciudad."
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+      </figure>
+
+      <div class="lg:order-1">
+        <span class="hero-badge mb-5 inline-block rounded-full px-3 py-1 text-xs font-medium">
+          Comunidad e Impacto
+        </span>
+        <h1 class="font-serif text-[2.2rem] font-bold leading-tight text-white md:text-[3.05rem]">
+          Donadores de sangre en Guayaquil
+        </h1>
+        <p class="mt-5 font-serif text-xl font-medium text-primary md:text-2xl">
+          Apoyo ciudadano para casos de donación de sangre
+        </p>
+        <p class="mt-5 text-lg text-neutral">
+          Un grupo de Facebook en Guayaquil donde las personas pueden compartir
+          solicitudes de donación y los donantes pueden ofrecer ayuda.
+        </p>
+        <p class="mt-5 text-sm text-neutral">
+          Desde 2016 · alrededor de 500 personas
+        </p>
+        <a
+          class="btn-primary mt-8"
+          href={groupUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver grupo en Facebook
+        </a>
+      </div>
+    </section>
+
+    <section class="community-section community-section-first intro-section grid gap-5 rounded-lg border border-border bg-card/45 p-5 backdrop-blur-md lg:grid-cols-[1.08fr_0.92fr] md:p-6">
+      <div class="intro-copy">
+        <h2>Una comunidad para compartir solicitudes de donación</h2>
+        <p>
+          Donadores de sangre en Guayaquil es una comunidad en Facebook creada
+          para facilitar la difusión de solicitudes de donación de sangre en la
+          ciudad. Allí, las personas pueden compartir necesidades concretas y los
+          donantes pueden encontrar publicaciones donde su ayuda puede ser
+          importante.
+        </p>
+      </div>
+      <div class="community-card intro-note">
+        <p class="note-label">Propósito</p>
+        <p>
+          El propósito es mantener un espacio útil, organizado y responsable para
+          que la información llegue con mayor claridad a quienes pueden
+          colaborar.
+        </p>
+      </div>
+    </section>
+
+    <section class="community-section">
+      <div class="section-heading">
+        <h2>Cómo funciona la comunidad</h2>
+        <p>
+          El grupo funciona como un punto de encuentro para difundir solicitudes
+          y ordenar mejor la información compartida por la comunidad.
+        </p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          steps.map((step) => (
+            <article class="community-card step-card">
+              <span class="step-marker" aria-hidden="true"></span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="community-section grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+      <div class="community-card">
+        <h2>Historia y participación</h2>
+        <p>
+          El grupo nació en 2016 por iniciativa de Ruth Calle Pino, con la
+          intención de abrir un espacio ciudadano para compartir solicitudes
+          relacionadas con donación de sangre en Guayaquil.
+        </p>
+        <p>
+          Desde 2024 apoyo la administración del grupo, colaborando en la
+          organización del espacio, la identidad visual, los filtros, las
+          preguntas del grupo y publicaciones automáticas que ayudan a mantener
+          la información más clara para quienes publican y para quienes desean
+          colaborar.
+        </p>
+      </div>
+
+      <aside class="community-card facts-card" aria-label="Datos breves del grupo">
+        <ul class="grid gap-3">
+          {
+            facts.map((fact) => (
+              <li>{fact}</li>
+            ))
+          }
+        </ul>
+      </aside>
+    </section>
+
+    <section class="community-section cta-card">
+      <div>
+        <h2>Un espacio para apoyar desde la comunidad</h2>
+        <p>
+          Si estás en Guayaquil y quieres conocer las solicitudes publicadas o
+          formar parte de la comunidad, puedes visitar el grupo en Facebook.
+        </p>
+        <p class="soft-note">
+          El grupo funciona como un espacio comunitario de difusión. La
+          disponibilidad de donantes depende de las personas que puedan colaborar
+          en cada caso.
+        </p>
+      </div>
+      <a
+        class="btn-primary"
+        href={groupUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver grupo en Facebook
+      </a>
+    </section>
+  </article>
 </Layout>
+
+<style>
+  .community-section {
+    margin-top: 5rem;
+  }
+
+  .community-section-first {
+    margin-top: 3.5rem;
+  }
+
+  .section-heading {
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-heading h2,
+  .intro-copy h2,
+  .community-card h2,
+  .cta-card h2 {
+    font-family: var(--font-sora);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.45rem;
+    color: var(--text-main);
+  }
+
+  .section-heading p,
+  .intro-copy p,
+  .community-card p,
+  .cta-card p {
+    margin-top: 1rem;
+    color: var(--text-muted);
+  }
+
+  .community-card,
+  .media-card,
+  .cta-card {
+    border: 1px solid var(--border-soft);
+    border-radius: 0.5rem;
+    background: var(--surface-card);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    backdrop-filter: blur(12px);
+  }
+
+  .community-card {
+    padding: 1.5rem;
+  }
+
+  .intro-section {
+    align-items: stretch;
+  }
+
+  .intro-copy {
+    max-width: 42rem;
+    align-self: center;
+  }
+
+  .intro-note {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+      linear-gradient(180deg, var(--surface-card-strong), var(--surface-card)),
+      var(--surface-card);
+    box-shadow: 0 10px 26px rgb(0 0 0 / 0.07);
+  }
+
+  .note-label {
+    margin-top: 0;
+    font-family: var(--font-sora);
+    color: var(--text-main);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+  }
+
+  .intro-note p:last-child {
+    font-size: 1.05rem;
+    line-height: 1.7rem;
+  }
+
+  .community-card h3 {
+    font-family: var(--font-sora);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    color: var(--text-main);
+  }
+
+  .step-card {
+    min-height: 14rem;
+  }
+
+  .step-marker {
+    display: inline-flex;
+    width: 2rem;
+    height: 0.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-main), #d54c5f);
+  }
+
+  .facts-card {
+    background:
+      linear-gradient(180deg, var(--surface-card-strong), var(--surface-card)),
+      var(--surface-card);
+  }
+
+  .facts-card li {
+    border: 1px solid var(--border-soft);
+    border-radius: 0.5rem;
+    background: var(--surface-soft);
+    padding: 0.8rem 0.95rem;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .hero-media {
+    box-shadow: 0 14px 36px rgb(0 0 0 / 0.1);
+  }
+
+  .hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cta-card {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    background:
+      linear-gradient(180deg, var(--surface-card-strong), var(--surface-card)),
+      var(--surface-card);
+  }
+
+  .soft-note {
+    max-width: 48rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-badge {
+    background: var(--accent-main);
+    color: var(--surface-page);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    min-height: 2.75rem;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background: var(--accent-main);
+    color: var(--surface-page);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .community-card,
+  .media-card,
+  .cta-card,
+  .btn-primary,
+  .facts-card li {
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease;
+  }
+
+  @media (hover: hover) {
+    .community-card:hover,
+    .cta-card:hover {
+      border-color: var(--accent-main);
+      box-shadow: 0 12px 28px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+
+    .media-card:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      transform: none;
+    }
+
+    .btn-primary:hover {
+      border-color: var(--accent-main);
+      box-shadow: 0 10px 22px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+
+    .facts-card li:hover {
+      border-color: var(--accent-main);
+      transform: translateY(-1px);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .community-card,
+    .cta-card {
+      padding: 2rem;
+    }
+
+    .community-section-first {
+      margin-top: 4rem;
+    }
+
+    .cta-card {
+      grid-template-columns: 1fr auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .community-card,
+    .media-card,
+    .cta-card,
+    .btn-primary,
+    .facts-card li {
+      transition: none;
+    }
+
+    .community-card:hover,
+    .cta-card:hover,
+    .btn-primary:hover,
+    .facts-card li:hover {
+      transform: none;
+    }
+  }
+</style>

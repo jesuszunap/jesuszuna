@@ -175,9 +175,9 @@ export const SITE_CONTENT: SiteContent = {
         role:
           "Apoyo en la administración y organización del espacio comunitario, procurando que las solicitudes se compartan de manera clara, responsable y útil para quienes necesitan ayuda y para quienes desean colaborar.",
         impact:
-          "Actualmente, el grupo reúne a cerca de 500 personas interesadas en apoyar o difundir solicitudes de donación de sangre en Guayaquil.",
+          "Actualmente, el grupo reúne a alrededor de 500 personas interesadas en apoyar o difundir solicitudes de donación de sangre en Guayaquil.",
         shortImpact:
-          "Cerca de 500 personas interesadas en apoyar o difundir solicitudes de donación.",
+          "Alrededor de 500 personas interesadas en apoyar o difundir solicitudes de donación.",
         action: {
           text: "Ver iniciativa",
           href: "/comunidad/donadores-sangre-guayaquil",
