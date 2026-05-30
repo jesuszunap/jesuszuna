@@ -12,7 +12,13 @@ const { id, title, subtitle, items } = Astro.props;
   <div class="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
     {
       items.map(({ name, badge, status, summary, cardSummary, technologies, action }) => (
-        <article class="flex h-full flex-col rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl motion-safe:hover:-translate-y-1 md:min-h-[27rem]">
+        <article
+          class:list={[
+            "relative flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl motion-safe:hover:-translate-y-1 md:min-h-[27rem]",
+            badge === "Proyecto destacado" &&
+              "border-primary/55 bg-[linear-gradient(180deg,var(--surface-card-strong),var(--surface-card))] shadow-md ring-1 ring-primary/15 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-primary after:pointer-events-none after:absolute after:-right-16 after:-top-16 after:h-36 after:w-36 after:rounded-full after:bg-primary/10 after:blur-2xl",
+          ]}
+        >
           <div class="mb-5 flex min-h-8 flex-wrap items-center gap-3">
             {badge && (
               <span class="rounded-full bg-primary px-3 py-1 text-xs font-medium text-black motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5">

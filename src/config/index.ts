@@ -101,7 +101,7 @@ export const SITE_CONTENT: SiteContent = {
       {
         name: "QX - Extractor Quipux",
         badge: "Proyecto destacado",
-        status: "En desarrollo / versión funcional",
+        status: "Versión 3.0.0 disponible",
         summary:
           "QX - Extractor Quipux es una aplicación de escritorio diseñada para automatizar la extracción, organización y exportación de información documental desde Quipux, reduciendo tareas repetitivas y facilitando el trabajo con documentos institucionales.",
         cardSummary:
@@ -124,19 +124,20 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         name: "Cotizador WH",
-        status: "En preparación",
+        badge: "Webapp / PWA ligera",
+        status: "Versión funcional disponible",
         summary:
           "Cotizador WH es una herramienta web pensada para calcular cotizaciones de forma rápida, clara y accesible desde el celular, reemplazando un flujo previo basado en AppSheet por una experiencia más ligera, personalizada y fácil de mantener.",
         cardSummary:
-          "Herramienta web pensada para calcular cotizaciones desde el celular de forma rápida, clara y fácil de mantener.",
+          "Webapp/PWA ligera para calcular cotizaciones desde el celular, copiar resultados, compartir por WhatsApp y trabajar con historial local.",
         problem:
           "Busca simplificar el cálculo de comisiones y montos finales en un flujo cotidiano de cotización, mostrando solo la información necesaria y facilitando acciones como copiar el resultado, revisar historial o compartir la cotización.",
         technologies: [
           "Web",
           "PWA",
           "JavaScript",
-          "Diseño responsive",
-          "Automatización de cálculos",
+          "WhatsApp",
+          "Offline",
         ],
         action: { text: "Ver proyecto", href: "/proyectos/cotizador-wh" },
         github: null,

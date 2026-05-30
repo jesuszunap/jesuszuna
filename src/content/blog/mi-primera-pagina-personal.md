@@ -10,30 +10,62 @@ tags:
 draft: false
 ---
 
-Durante mucho tiempo, tener una página personal fue una idea pendiente. No solo por la parte técnica, sino por lo que representa: decidir cómo presentarme, qué mostrar, qué dejar para después y cómo construir un espacio propio que se sienta profesional sin perder humanidad.
+Durante un tiempo, tener una página personal fue una de esas ideas que estaban ahí, pendientes, pero sin una fecha clara. No lo veía como algo urgente. Pensaba que tal vez bastaba con tener redes, GitHub, algunos enlaces sueltos y ya.
 
-jesuszuna.com nace como una primera versión de ese espacio. No pretende ser una web perfecta ni definitiva, sino un punto de partida: una forma de reunir mi perfil, mis proyectos de software, mis iniciativas de comunidad y mis canales de contacto en un solo lugar.
+Pero empecé a ver portafolios de otras personas, páginas personales bien cuidadas, espacios propios con nombre y dominio, y me quedó esa idea dando vueltas: ¿por qué no tener también un lugar que reúna lo que soy, lo que hago y lo que quiero seguir construyendo?
 
-## Por qué quise crear este sitio
+Después de hacer mi primer programa y empezar a tomar más en serio mis proyectos, esa idea dejó de sentirse lejana. Comprar `jesuszuna.com` fue un paso pequeño en lo técnico, pero grande en lo personal. Sentí algo de orgullo. También un poco de rareza, porque tener una web con tu propio nombre te obliga a preguntarte cómo quieres presentarte ante los demás.
 
-Como estudiante de Ingeniería en Software y desarrollador, me interesa construir herramientas que resuelvan problemas reales. Algunos proyectos nacen desde la automatización, otros desde necesidades cotidianas y otros desde experiencias comunitarias.
+## No quería solo un portafolio
 
-Tener un sitio propio me permite organizar mejor esa historia. En lugar de depender solo de redes sociales o enlaces sueltos, puedo tener un espacio que explique quién soy, qué estoy construyendo y hacia dónde quiero crecer.
+Desde el inicio tuve claro que no quería una página que hablara únicamente de trabajo o de código. Sí, soy estudiante de Ingeniería en Software y me interesa construir herramientas útiles, automatizaciones y proyectos digitales. Pero también quería que la web mostrara una parte más humana.
 
-## Lo que quería transmitir
+Por eso decidí que el sitio no solo tendría proyectos de software, sino también una sección de Comunidad e Impacto. Para mí, esas iniciativas también forman parte de mi historia. No son algo aparte ni un adorno para verme mejor. Son parte de lo que fui haciendo, de lo que aprendí y de lo que también me representa.
 
-Desde el inicio, la idea no era hacer una página demasiado corporativa ni una web cargada de efectos. Quería algo claro, elegante y humano. Una página que hablara de software, pero también de comunidad; de proyectos, pero también de intención; de tecnología, pero con sentido práctico.
+Ese equilibrio fue importante: software, proyectos, comunidad y contacto profesional, todo dentro de un mismo espacio.
 
-Por eso la primera versión se enfoca en lo esencial: una presentación clara, una sección sobre mí, proyectos de software, iniciativas de Comunidad e Impacto, contacto, privacidad y una base técnica preparada para seguir creciendo.
+## Lo difícil fue ordenar la identidad
 
-## Lo que aprendí construyéndola
+Pensé que lo más complicado sería la parte técnica, pero no fue así. Lo más difícil fue planificar.
 
-Crear esta primera versión me recordó que un sitio personal no es solo diseño o código. También es una decisión de identidad. Obliga a ordenar ideas, priorizar contenido y pensar cómo quieres que otros te encuentren en internet.
+Decidir qué mostrar, qué dejar para después, qué tono usar, cómo hablar de mí sin sonar presumido y cómo incluir proyectos comunitarios sin que se sintieran como una forma de llamar la atención. Esa parte tomó más tiempo del que imaginaba.
 
-También aprendí que un MVP no tiene que resolverlo todo desde el primer día. Puede empezar con una base sólida, funcional y honesta, dejando espacio para mejorar con el tiempo: páginas internas más completas, artículos, capturas reales, un logo final y nuevos proyectos.
+También me di cuenta de algo: muchas veces uno hace cosas, participa en proyectos o ayuda a construir comunidades, pero no siempre guarda evidencias, capturas o recuerdos. Cuando llega el momento de contar esa historia, toca reconstruirla con cuidado.
 
-## Lo que viene después
+No quería que la página pareciera genérica, falsa o arrogante. Quería que se sintiera propia. Profesional, sí, pero también honesta.
 
-Esta web seguirá creciendo poco a poco. Quiero usarla para documentar proyectos, compartir aprendizajes, mostrar avances y escribir reflexiones sobre tecnología, comunidad y desarrollo personal.
+## La base técnica
 
-Por ahora, este primer artículo queda como una pequeña marca de inicio: el momento en que jesuszuna.com dejó de ser solo una idea y empezó a existir como mi espacio propio en internet.
+Para construir la web partí desde AstroZen, una plantilla de Moisés Machuca. Me gustó porque era limpia, se veía bien en móvil y tenía una base moderna que podía adaptar a lo que quería construir.
+
+A partir de ahí fui modificando bastante la estructura, los textos, los estilos, las secciones y la forma de presentar el contenido. También fue mi primera experiencia usando Astro, y me gustó mucho la sensación de trabajar con una herramienta rápida, ordenada y optimizada.
+
+Ver la página cargar rápido, adaptarse bien y mantener una estructura clara me hizo entender por qué vale la pena elegir bien la base técnica desde el inicio.
+
+## Lo visual también importa
+
+Quería que al entrar a la página se sintiera algo cuidado. No una web pesada, ni una estética de "neo hacker", ni una plantilla llena de efectos solo por llamar la atención.
+
+Me interesaba algo más equilibrado: limpio, bonito, moderno y humano. El morado para el modo claro y el azul/celeste para el modo oscuro fueron decisiones naturales porque son colores que me gustan y porque ayudan a darle identidad al sitio.
+
+Una de las cosas que más me gustó fue ver cómo el modo claro y oscuro, junto con imágenes adaptadas para cada tema, empezaron a darle un toque más premium a la experiencia. Ahí sentí que la página ya no era solo una prueba: empezaba a parecer un espacio real.
+
+## Publicar sin esperar la perfección
+
+Esta primera versión no es perfecta, pero es trabajo honesto.
+
+Todavía quedan cosas por mejorar: páginas internas más completas, más proyectos personales, más artículos, mejores animaciones, capturas más cuidadas y detalles visuales que seguramente irán cambiando con el tiempo.
+
+Pero también aprendí que un MVP no tiene que resolverlo todo desde el primer día. Puede ser una base sólida, funcional y sincera. Algo que ya existe, que ya se puede compartir y que puede mejorar poco a poco.
+
+Ver `jesuszuna.com` publicado por primera vez se sintió como una parte de mis sueños hecha realidad. Tal vez suene grande para una página personal, pero para mí fue eso: tomar una idea que estaba rondando desde hace tiempo y convertirla en algo visible.
+
+## Lo que viene
+
+Quiero que esta web siga creciendo. Que sirva para mostrar proyectos, documentar avances, compartir aprendizajes y escribir reflexiones sobre tecnología, comunidad y desarrollo personal.
+
+También quiero que sea un espacio que me acompañe mientras sigo aprendiendo y construyendo. No como una versión final de mí, sino como una página que pueda cambiar conmigo.
+
+Por ahora, este primer artículo queda como una marca de inicio: el momento en que `jesuszuna.com` dejó de ser solo una idea y empezó a existir como mi espacio propio en internet.
+
+Y sí, quedó pepa.
