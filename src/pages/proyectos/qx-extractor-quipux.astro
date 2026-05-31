@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 
 const title = "QX - Extractor Quipux | Proyecto de Jesús Zuña";
 const description =
-  "QX - Extractor Quipux es una aplicación de escritorio para Windows que ayuda a extraer, organizar y exportar información documental desde Quipux, con exportación Excel e Inteligencia Documental local opcional.";
+  "Aplicación de escritorio para extraer, organizar y exportar información documental desde Quipux, con automatización, reportes Excel e Inteligencia Documental local opcional.";
 
 const assetPath = "/images/projects/qx-extractor-quipux";
 const downloadUrl =
@@ -164,6 +164,49 @@ const downloads = [
     subtle: true,
   },
 ];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "QX - Extractor Quipux",
+    description,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Windows",
+    url: "https://jesuszuna.com/proyectos/qx-extractor-quipux",
+    image: `https://jesuszuna.com${assetPath}/cover-light.webp`,
+    author: {
+      "@type": "Person",
+      name: "Jesús Zuña Pacheco",
+      url: "https://jesuszuna.com",
+    },
+    programmingLanguage: ["Python"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://jesuszuna.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Proyectos",
+        item: "https://jesuszuna.com/#proyectos",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "QX - Extractor Quipux",
+        item: "https://jesuszuna.com/proyectos/qx-extractor-quipux",
+      },
+    ],
+  },
+];
 ---
 
 <Layout
@@ -172,6 +215,7 @@ const downloads = [
   ogTitle="QX - Extractor Quipux"
   ogDescription={description}
   ogImage={`${assetPath}/cover-light.webp`}
+  structuredData={structuredData}
 >
   <article class="pt-8 pb-14 md:pt-12 md:pb-20">
     <a class="mb-8 inline-block text-sm font-medium text-primary" href="/#proyectos">

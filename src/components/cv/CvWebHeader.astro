@@ -1,0 +1,58 @@
+---
+import type { CvData, CvLanguage } from "../../data/cv";
+import CvContactActions from "./CvContactActions.astro";
+
+interface Props {
+  data: CvData;
+  language: CvLanguage;
+}
+
+const { data, language } = Astro.props;
+---
+
+<header class="cv-reveal relative overflow-hidden rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 hover:border-primary/60 hover:shadow-xl md:p-8">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,var(--accent-soft),transparent_20rem)] opacity-80">
+  </div>
+  <div class="pointer-events-none absolute right-6 top-6 hidden h-20 w-32 rounded-lg border border-border bg-card-strong/70 backdrop-blur-md md:block">
+    <div class="mx-4 mt-4 h-1.5 rounded-full bg-primary/60"></div>
+    <div class="mx-4 mt-3 h-1.5 w-14 rounded-full bg-white/15"></div>
+    <div class="mx-4 mt-3 h-1.5 w-20 rounded-full bg-white/10"></div>
+  </div>
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent">
+  </div>
+
+  <div class="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+    <div class="max-w-3xl">
+      <p class="mb-4 inline-block rounded-full border border-border bg-card-strong px-3 py-1 text-xs font-medium text-primary shadow-sm">
+        {data.person.status[language]}
+      </p>
+      <h1 class="font-serif text-4xl font-bold text-white md:text-6xl">
+        {data.person.name}
+      </h1>
+      <p class="mt-4 max-w-2xl font-serif text-xl font-medium text-primary md:text-2xl">
+        {data.person.title[language].web}
+      </p>
+      <p class="mt-5 max-w-2xl text-base text-neutral">
+        {data.person.summary[language].web}
+      </p>
+      <p class="mt-4 text-sm font-medium text-neutral">
+        {data.person.location[language]}
+      </p>
+    </div>
+    <a
+      class="group inline-flex w-fit rounded-full bg-primary px-6 py-3 text-sm font-medium text-black shadow-sm outline-none motion-safe:transition motion-safe:duration-200 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-primary/40"
+      href={data.pdf.routes[language]}
+      data-cv-pdf-link
+    >
+      <span
+        class="inline-block motion-safe:transition motion-safe:duration-200 motion-safe:group-hover:-translate-y-0.5"
+        data-cv-pdf-label
+      >
+        {data.ui.actions[language].downloadPdf}
+      </span>
+    </a>
+  </div>
+  <div class="relative mt-8">
+    <CvContactActions data={data} language={language} mode="web" />
+  </div>
+</header>

@@ -1,0 +1,314 @@
+---
+import type { CvData, CvLanguage } from "../../data/cv";
+import CvEducation from "./CvEducation.astro";
+import CvExperienceList from "./CvExperienceList.astro";
+import CvLanguageToggle from "./CvLanguageToggle.astro";
+import CvLanguages from "./CvLanguages.astro";
+import CvProjectList from "./CvProjectList.astro";
+import CvSkillsGrid from "./CvSkillsGrid.astro";
+import CvWebHeader from "./CvWebHeader.astro";
+import CvWebSection from "./CvWebSection.astro";
+
+interface Props {
+  data: CvData;
+  defaultLanguage?: CvLanguage;
+}
+
+const { data, defaultLanguage = "es" } = Astro.props;
+const languages: CvLanguage[] = ["es", "en"];
+---
+
+<section class="py-10 md:py-16" data-cv-root data-default-language={defaultLanguage}>
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <a
+      class="inline-flex w-fit rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-primary shadow-sm outline-none backdrop-blur-md motion-safe:transition motion-safe:duration-200 hover:border-primary hover:bg-card-strong focus-visible:ring-2 focus-visible:ring-primary/40"
+      href="/"
+    >
+      Volver al inicio
+    </a>
+    <CvLanguageToggle data={data} defaultLanguage={defaultLanguage} />
+  </div>
+
+  {
+    languages.map((language) => (
+      <div
+        class="space-y-8 cv-language-panel"
+        data-cv-panel={language}
+        lang={language}
+        hidden={language !== defaultLanguage}
+      >
+        <CvWebHeader data={data} language={language} />
+
+        <CvWebSection title={data.ui.sections[language].profile}>
+          <p class="max-w-4xl text-base text-neutral">
+            {data.person.profile[language]}
+          </p>
+        </CvWebSection>
+
+        <CvWebSection title={data.ui.sections[language].experience}>
+          <CvExperienceList data={data} language={language} mode="web" />
+        </CvWebSection>
+
+        <CvWebSection title={data.ui.sections[language].projects}>
+          <CvProjectList data={data} language={language} mode="web" />
+        </CvWebSection>
+
+        <CvWebSection title={data.ui.sections[language].skills}>
+          <CvSkillsGrid data={data} language={language} mode="web" />
+        </CvWebSection>
+
+        <div class="grid gap-8 md:grid-cols-2">
+          <CvWebSection title={data.ui.sections[language].education}>
+            <CvEducation data={data} language={language} mode="web" />
+          </CvWebSection>
+          <CvWebSection title={data.ui.sections[language].languages}>
+            <CvLanguages data={data} language={language} mode="web" />
+          </CvWebSection>
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-cv-root]");
+  const storageKey = "cv-language";
+  const validLanguages = new Set(["es", "en"]);
+  const pageTranslations = {
+    es: {
+      nav: {
+        "#inicio": "Inicio",
+        "#sobre-mi": "Sobre mí",
+        "#proyectos": "Proyectos",
+        "#comunidad": "Comunidad e Impacto",
+        "/blog": "Blog",
+        "#contacto": "Contacto",
+      },
+      footerLabels: {
+        navigation: "Navegación",
+        contact: "Contacto",
+        legal: "Legal",
+      },
+      contact: {
+        "mailto:contacto@jesuszuna.com": "contacto@jesuszuna.com",
+        "https://wa.me/593962997060": "WhatsApp profesional",
+        "https://github.com/jesuszunap": "GitHub",
+        "https://www.linkedin.com/in/jesús-zuña/": "LinkedIn",
+      },
+      legal: {
+        "/cv": "CV",
+        "/cv?lang=en": "CV",
+        "/privacidad": "Privacidad",
+        "/aviso-legal": "Aviso legal",
+      },
+      rights: "© 2026 Jesús Zuña. Todos los derechos reservados.",
+    },
+    en: {
+      nav: {
+        "#inicio": "Home",
+        "#sobre-mi": "About",
+        "#proyectos": "Projects",
+        "#comunidad": "Community & Impact",
+        "/blog": "Blog",
+        "#contacto": "Contact",
+      },
+      footerLabels: {
+        navigation: "Navigation",
+        contact: "Contact",
+        legal: "Legal",
+      },
+      contact: {
+        "mailto:contacto@jesuszuna.com": "contacto@jesuszuna.com",
+        "https://wa.me/593962997060": "Professional WhatsApp",
+        "https://github.com/jesuszunap": "GitHub",
+        "https://www.linkedin.com/in/jesús-zuña/": "LinkedIn",
+      },
+      legal: {
+        "/cv": "CV",
+        "/cv?lang=en": "CV",
+        "/privacidad": "Privacy",
+        "/aviso-legal": "Legal Notice",
+      },
+      rights: "© 2026 Jesús Zuña. All rights reserved.",
+    },
+  };
+
+  const getInitialLanguage = () => {
+    const params = new URLSearchParams(window.location.search);
+    const queryLanguage = params.get("lang");
+    const savedLanguage = localStorage.getItem(storageKey);
+    const defaultLanguage = root?.dataset.defaultLanguage ?? "es";
+
+    if (queryLanguage && validLanguages.has(queryLanguage)) return queryLanguage;
+    if (savedLanguage && validLanguages.has(savedLanguage)) return savedLanguage;
+    return defaultLanguage;
+  };
+
+  const setLanguage = (language: string) => {
+    if (!root || !validLanguages.has(language)) return;
+
+    document.documentElement.lang = language;
+    localStorage.setItem(storageKey, language);
+
+    document.querySelectorAll<HTMLElement>("[data-cv-panel]").forEach((panel) => {
+      panel.hidden = panel.dataset.cvPanel !== language;
+    });
+
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-cv-lang-button]")
+      .forEach((button) => {
+        const isActive = button.dataset.cvLangButton === language;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("text-black", isActive);
+        button.classList.toggle("text-neutral", !isActive);
+        button.classList.toggle("hover:text-white", !isActive);
+      });
+
+    document
+      .querySelectorAll<HTMLElement>("[data-cv-lang-indicator]")
+      .forEach((indicator) => {
+        indicator.classList.toggle("translate-x-24", language === "en");
+        indicator.classList.toggle("translate-x-0", language !== "en");
+      });
+
+    const translations =
+      pageTranslations[language as keyof typeof pageTranslations];
+
+    document.querySelectorAll<HTMLElement>("[data-nav-href]").forEach((link) => {
+      const key = link.dataset.navHref;
+      if (key && key in translations.nav) {
+        link.textContent = translations.nav[key as keyof typeof translations.nav];
+      }
+    });
+
+    document
+      .querySelectorAll<HTMLElement>("[data-footer-nav-href]")
+      .forEach((link) => {
+        const key = link.dataset.footerNavHref;
+        if (key && key in translations.nav) {
+          link.textContent =
+            translations.nav[key as keyof typeof translations.nav];
+        }
+      });
+
+    document.querySelectorAll<HTMLElement>("[data-footer-label]").forEach((label) => {
+      const key = label.dataset.footerLabel;
+      if (key && key in translations.footerLabels) {
+        label.textContent =
+          translations.footerLabels[
+            key as keyof typeof translations.footerLabels
+          ];
+      }
+    });
+
+    document
+      .querySelectorAll<HTMLAnchorElement>("[data-footer-contact-href]")
+      .forEach((link) => {
+        const key = link.dataset.footerContactHref;
+        if (key && key in translations.contact) {
+          link.textContent =
+            translations.contact[key as keyof typeof translations.contact];
+        }
+      });
+
+    document
+      .querySelectorAll<HTMLAnchorElement>("[data-footer-legal-href]")
+      .forEach((link) => {
+        const key = link.dataset.footerLegalHref;
+        if (key && key in translations.legal) {
+          link.textContent =
+            translations.legal[key as keyof typeof translations.legal];
+        }
+
+        if (key === "/cv" || key === "/cv?lang=en") {
+          link.href = language === "en" ? "/cv?lang=en" : "/cv";
+          link.dataset.footerLegalHref =
+            language === "en" ? "/cv?lang=en" : "/cv";
+        }
+      });
+
+    const rights = document.querySelector<HTMLElement>("[data-footer-rights]");
+    if (rights) {
+      rights.textContent = translations.rights;
+    }
+  };
+
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-cv-lang-button]")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const language = button.dataset.cvLangButton;
+        if (language) setLanguage(language);
+      });
+    });
+
+  setLanguage(getInitialLanguage());
+</script>
+
+<style>
+  :global(.cv-reveal) {
+    animation: cv-reveal 560ms ease both;
+  }
+
+  :global(.cv-delay-1) {
+    animation-delay: 70ms;
+  }
+
+  :global(.cv-delay-2) {
+    animation-delay: 140ms;
+  }
+
+  :global(.cv-delay-3) {
+    animation-delay: 210ms;
+  }
+
+  :global(.cv-delay-4) {
+    animation-delay: 280ms;
+  }
+
+  :global(.cv-delay-5) {
+    animation-delay: 350ms;
+  }
+
+  :global(.cv-language-panel > .cv-reveal:nth-child(1)) {
+    animation-delay: 0ms;
+  }
+
+  :global(.cv-language-panel > .cv-reveal:nth-child(2)) {
+    animation-delay: 80ms;
+  }
+
+  :global(.cv-language-panel > .cv-reveal:nth-child(3)) {
+    animation-delay: 140ms;
+  }
+
+  :global(.cv-language-panel > .cv-reveal:nth-child(4)) {
+    animation-delay: 200ms;
+  }
+
+  :global(.cv-language-panel > .cv-reveal:nth-child(5)) {
+    animation-delay: 260ms;
+  }
+
+  :global(.cv-language-panel > .grid .cv-reveal) {
+    animation-delay: 320ms;
+  }
+
+  @keyframes cv-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.cv-reveal) {
+      animation: none;
+    }
+  }
+</style>

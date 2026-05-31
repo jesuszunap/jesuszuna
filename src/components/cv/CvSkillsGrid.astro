@@ -1,0 +1,30 @@
+---
+import type { CvData, CvLanguage, CvRenderMode } from "../../data/cv";
+
+interface Props {
+  data: CvData;
+  language: CvLanguage;
+  mode: CvRenderMode;
+}
+
+const { data, language, mode } = Astro.props;
+---
+
+<div class:list={[mode === "web" ? "grid gap-4 md:grid-cols-2 lg:grid-cols-3" : "print-skills"]}>
+  {
+    data.skills.map((group) => (
+      <section class={mode === "web" ? "group rounded-lg border border-border bg-card-strong p-5 shadow-sm motion-safe:transition motion-safe:duration-300 hover:border-primary/60 hover:bg-card hover:shadow-lg motion-safe:hover:-translate-y-0.5" : "print-skill-group"}>
+        <h3 class={mode === "web" ? "text-base font-semibold text-white" : ""}>
+          {group.category[language]}
+        </h3>
+        <ul class={mode === "web" ? "mt-4 flex flex-wrap gap-2" : ""}>
+          {group.items[language].map((skill) => (
+            <li class={mode === "web" ? "inline-flex w-fit max-w-full self-start rounded-full border border-border bg-card px-3 py-1 text-xs text-neutral motion-safe:transition motion-safe:duration-200 group-hover:border-primary/35 group-hover:text-white" : ""}>
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</div>

@@ -1,9 +1,9 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-const title = "Cotizador WH | Proyecto de Jesús Zuña";
+const title = "Cotizador WH | Webapp/PWA de Jesús Zuña";
 const description =
-  "Cotizador WH es una webapp/PWA ligera para calcular cotizaciones, comisiones y montos finales de forma rápida desde el celular, con integración para WhatsApp.";
+  "Webapp/PWA ligera para calcular cotizaciones desde el celular, copiar resultados, compartir por WhatsApp y mantener historial local.";
 
 const assetPath = "/images/projects/cotizador-wh";
 const appUrl = "https://cotizador.jesuszuna.com";
@@ -63,6 +63,49 @@ const comparisons = [
     },
   },
 ];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Cotizador WH",
+    description,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: "https://jesuszuna.com/proyectos/cotizador-wh",
+    image: `https://jesuszuna.com${assetPath}/cover-light.webp`,
+    author: {
+      "@type": "Person",
+      name: "Jesús Zuña Pacheco",
+      url: "https://jesuszuna.com",
+    },
+    programmingLanguage: ["JavaScript"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://jesuszuna.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Proyectos",
+        item: "https://jesuszuna.com/#proyectos",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Cotizador WH",
+        item: "https://jesuszuna.com/proyectos/cotizador-wh",
+      },
+    ],
+  },
+];
 ---
 
 <Layout
@@ -71,6 +114,7 @@ const comparisons = [
   ogTitle="Cotizador WH"
   ogDescription={description}
   ogImage={`${assetPath}/cover-light.webp`}
+  structuredData={structuredData}
 >
   <article class="pt-8 pb-14 md:pt-12 md:pb-20">
     <a class="mb-8 inline-block text-sm font-medium text-primary" href="/#proyectos">

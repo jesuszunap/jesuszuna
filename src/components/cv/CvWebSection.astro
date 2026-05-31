@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="cv-reveal relative overflow-hidden rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 hover:border-primary/55 hover:shadow-xl md:p-8">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/0 via-primary/45 to-primary/0">
+  </div>
+  <h2 class="relative font-serif text-2xl font-semibold text-white">{title}</h2>
+  <div class="mt-6">
+    <slot />
+  </div>
+</section>

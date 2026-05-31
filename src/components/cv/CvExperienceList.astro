@@ -1,0 +1,42 @@
+---
+import type { CvData, CvLanguage, CvRenderMode } from "../../data/cv";
+
+interface Props {
+  data: CvData;
+  language: CvLanguage;
+  mode: CvRenderMode;
+}
+
+const { data, language, mode } = Astro.props;
+---
+
+<div class:list={[mode === "web" ? "space-y-5" : "print-list"]}>
+  {
+    data.experience.map((item) => (
+      <article class:list={[mode === "web" ? "group relative overflow-hidden rounded-lg border border-border bg-card-strong p-5 shadow-sm motion-safe:transition motion-safe:duration-300 hover:border-primary/60 hover:bg-card hover:shadow-lg motion-safe:hover:-translate-y-0.5" : "print-item"]}>
+        {mode === "web" && <div class="pointer-events-none absolute left-0 top-0 h-full w-1 bg-primary/55 opacity-70 motion-safe:transition motion-safe:duration-300 group-hover:opacity-100" />}
+        <div class={mode === "web" ? "flex flex-col gap-2 md:flex-row md:items-start md:justify-between" : "print-item-heading"}>
+          <div>
+            <h3 class={mode === "web" ? "text-lg font-semibold text-white" : ""}>
+              {item.organization}
+            </h3>
+            <p class={mode === "web" ? "mt-1 text-sm font-medium text-primary" : "print-role"}>
+              {item.role[language]}
+            </p>
+          </div>
+          <p class={mode === "web" ? "text-sm text-neutral" : "print-meta"}>
+            {item.period[language]} · {item.location[language]}
+          </p>
+        </div>
+        <p class={mode === "web" ? "mt-4 text-sm text-neutral" : "print-description"}>
+          {item.description[language][mode]}
+        </p>
+        <ul class={mode === "web" ? "mt-4 list-disc space-y-2 pl-5 text-sm text-neutral marker:text-primary/75" : "print-bullets"}>
+          {item.bullets[language][mode].map((bullet) => (
+            <li>{bullet}</li>
+          ))}
+        </ul>
+      </article>
+    ))
+  }
+</div>

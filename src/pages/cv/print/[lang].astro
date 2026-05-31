@@ -1,0 +1,33 @@
+---
+import CvPrintView from "@components/cv/CvPrintView.astro";
+import { CV_DATA, type CvLanguage } from "../../../data/cv";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const langParam = Astro.params.lang;
+const language: CvLanguage = langParam === "en" ? "en" : "es";
+const title =
+  language === "es"
+    ? "CV Jesús Zuña Pacheco"
+    : "Resume Jesús Zuña Pacheco";
+const description =
+  language === "es"
+    ? "Versión imprimible del CV de Jesús Zuña Pacheco."
+    : "Printable resume version for Jesús Zuña Pacheco.";
+---
+
+<!doctype html>
+<html lang={language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <CvPrintView data={CV_DATA} language={language} />
+  </body>
+</html>

@@ -1,9 +1,9 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-const title = "Acceso a la universidad pública en Ecuador | Jesús Zuña";
+const title = "Acceso a la universidad pública en Ecuador | Comunidad educativa";
 const description =
-  "Comunidad de Telegram creada para compartir información, materiales y orientación entre aspirantes a la universidad pública en Ecuador durante su etapa principal entre 2020 y 2023.";
+  "Comunidad educativa creada para compartir información, materiales y orientación entre aspirantes a la universidad pública en Ecuador durante su etapa activa.";
 
 const telegramUrl = "https://t.me/TransformarGrupo";
 const coverUrl = "/images/community/acceso-universidad-publica-ecuador/cover.webp";
@@ -44,6 +44,50 @@ const stats = [
     label: "Interacciones acumuladas durante su etapa activa",
   },
 ];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Acceso a la universidad pública en Ecuador",
+    description,
+    url: "https://jesuszuna.com/comunidad/acceso-universidad-publica-ecuador",
+    image: `https://jesuszuna.com${coverUrl}`,
+    about: {
+      "@type": "Thing",
+      name: "Acceso a la educación superior pública en Ecuador",
+    },
+    author: {
+      "@type": "Person",
+      name: "Jesús Zuña Pacheco",
+      url: "https://jesuszuna.com",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://jesuszuna.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Comunidad e Impacto",
+        item: "https://jesuszuna.com/#comunidad",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Acceso a la universidad pública en Ecuador",
+        item: "https://jesuszuna.com/comunidad/acceso-universidad-publica-ecuador",
+      },
+    ],
+  },
+];
 ---
 
 <Layout
@@ -52,6 +96,7 @@ const stats = [
   ogTitle="Acceso a la universidad pública en Ecuador"
   ogDescription={description}
   ogImage={coverUrl}
+  structuredData={structuredData}
 >
   <article class="pt-8 pb-14 md:pt-12 md:pb-20">
     <a class="mb-8 inline-block text-sm font-medium text-primary" href="/#comunidad">

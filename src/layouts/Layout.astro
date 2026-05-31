@@ -5,6 +5,7 @@ import Analytics from "@vercel/analytics/astro";
 import { SITE_CONFIG } from "@config";
 import Footer from "@components/Footer.astro";
 import "../styles/global.css";
+import type { FooterProps, LinkProps } from "@types";
 
 interface Props {
   title?: string;
@@ -13,6 +14,18 @@ interface Props {
   ogDescription?: string;
   ogImage?: string;
   ogType?: "article" | "profile" | "website";
+  robots?: string;
+  lang?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  hideFooter?: boolean;
+  navLinks?: LinkProps[];
+  footer?: FooterProps;
+  footerLabels?: {
+    navigation: string;
+    contact: string;
+    legal: string;
+    rights: string;
+  };
 }
 
 const pageTitle = Astro.props.title;
@@ -21,6 +34,13 @@ const pageOgTitle = Astro.props.ogTitle;
 const pageOgDescription = Astro.props.ogDescription;
 const pageOgImage = Astro.props.ogImage;
 const pageOgType = Astro.props.ogType;
+const pageRobots = Astro.props.robots ?? "index, follow";
+const pageLang = Astro.props.lang;
+const pageStructuredData = Astro.props.structuredData;
+const hideFooter = Astro.props.hideFooter ?? false;
+const pageNavLinks = Astro.props.navLinks;
+const pageFooter = Astro.props.footer;
+const pageFooterLabels = Astro.props.footerLabels;
 
 const {
   brand,
@@ -39,6 +59,9 @@ const {
 
 const title = pageTitle ?? defaultTitle;
 const description = pageDescription ?? defaultDescription;
+const htmlLanguage = pageLang ?? language;
+const resolvedNavLinks = pageNavLinks ?? navLinks;
+const resolvedFooter = pageFooter ?? footer;
 const ogTitle = pageOgTitle ?? pageTitle ?? defaultOgTitle;
 const ogDescription =
   pageOgDescription ?? pageDescription ?? defaultOgDescription;
@@ -54,7 +77,16 @@ const structuredData = [
     alternateName: ["Jesus Zuna", "Jesus Zuna Pacheco", "Jesús Zuña Pacheco"],
     url: siteUrl,
     jobTitle:
-      "Desarrollador de software y estudiante de Ingeniería en Software",
+      "Desarrollador de software y estudiante de Ingeniería de Software",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Guayaquil",
+      addressCountry: "EC",
+    },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Universidad de Guayaquil",
+    },
     email: SITE_CONFIG.email,
     sameAs,
   },
@@ -88,11 +120,16 @@ const structuredData = [
         },
       ]
     : []),
+  ...(pageStructuredData
+    ? Array.isArray(pageStructuredData)
+      ? pageStructuredData
+      : [pageStructuredData]
+    : []),
 ];
 ---
 
 <!doctype html>
-<html lang={language} class="scroll-pt-16 scroll-smooth">
+<html lang={htmlLanguage} class="scroll-pt-16 scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <script is:inline>
@@ -116,6 +153,7 @@ const structuredData = [
     </script>
     <meta name="description" content={description} />
     <meta name="author" content={author} />
+    <meta name="robots" content={pageRobots} />
     <meta name="viewport" content="width=device-width" />
     <meta
       name="theme-color"
@@ -139,11 +177,12 @@ const structuredData = [
     <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content={brand} />
     <meta
       property="og:type"
       content={pageOgType ?? (isHome ? "profile" : "website")}
     />
-    <meta property="og:locale" content="es_EC" />
+    <meta property="og:locale" content={htmlLanguage === "en" ? "en_US" : "es_EC"} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
@@ -158,15 +197,20 @@ const structuredData = [
     />
   </head>
   <body class="min-h-screen font-sans text-white">
-    <Navbar brand={brand} navLinks={navLinks} />
+    <Navbar brand={brand} navLinks={resolvedNavLinks} />
     <main class="mx-auto max-w-5xl px-5">
       <slot />
     </main>
-    <Footer
-      author={author}
-      brand={brand}
-      socialLinks={socialLinks}
-      footer={footer}
-    />
+    {
+      !hideFooter && (
+        <Footer
+          author={author}
+          brand={brand}
+          socialLinks={socialLinks}
+          footer={resolvedFooter}
+          labels={pageFooterLabels}
+        />
+      )
+    }
   </body>
 </html>

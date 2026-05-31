@@ -8,31 +8,56 @@ const { id, title, description, facts, secondaryLink } = Astro.props;
 ---
 
 <Section text={title} href={id}>
-  <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
-    <div class="space-y-5">
-      {
-        description.split("\n\n").map((paragraph) => (
-          <p class="text-base text-neutral">{paragraph}</p>
-        ))
-      }
-    </div>
-    <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl motion-safe:hover:-translate-y-1">
-      <dl class="grid gap-5">
+  <div class="space-y-6">
+    <div class="grid items-start gap-7 md:grid-cols-[1.1fr_0.9fr] md:gap-8">
+      <div class="space-y-5">
         {
-          facts.map(({ label, value }) => (
-            <div class="border-t border-border pt-4 motion-safe:transition motion-safe:duration-200 hover:border-primary first:border-t-0 first:pt-0">
-              <dt class="text-xs font-medium text-primary">{label}</dt>
-              <dd class="mt-2 text-sm text-white">{value}</dd>
-            </div>
+          description.split("\n\n").map((paragraph) => (
+            <p class="text-base text-neutral">{paragraph}</p>
           ))
         }
-      </dl>
+      </div>
+      <div class="rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl motion-safe:hover:-translate-y-1">
+        <dl class="grid gap-5">
+          {
+            facts.map(({ label, value }) => (
+              <div class="border-t border-border pt-4 motion-safe:transition motion-safe:duration-200 hover:border-primary first:border-t-0 first:pt-0">
+                <dt class="text-xs font-medium text-primary">{label}</dt>
+                <dd class="mt-2 text-sm text-white">{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+
+    <aside class="rounded-lg border border-border bg-card px-5 py-4 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-lg motion-safe:hover:-translate-y-0.5 sm:px-6 md:flex md:items-center md:justify-between md:gap-6">
+      <div>
+        <p class="font-serif text-lg font-semibold text-white">Perfil profesional</p>
+        <p class="mt-2 text-sm text-neutral">
+          Consulta mi CV web con experiencia, proyectos destacados, habilidades,
+          educación e idiomas.
+        </p>
+      </div>
       <a
-        class="mt-7 inline-block text-sm font-medium text-white motion-safe:transition motion-safe:duration-200 hover:text-primary motion-safe:hover:translate-x-1"
+        class="mt-4 inline-flex shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-black shadow-sm outline-none motion-safe:transition motion-safe:duration-200 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary/40 md:mt-0"
         href={secondaryLink.href}
+        aria-label="Ver CV profesional de Jesús Zuña Pacheco"
       >
         {secondaryLink.text}
       </a>
-    </div>
+    </aside>
   </div>
 </Section>
+
+<style>
+  :global(#sobre-mi) {
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 48rem) {
+    :global(#sobre-mi) {
+      padding-bottom: 5rem;
+    }
+  }
+</style>

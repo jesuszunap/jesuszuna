@@ -1,13 +1,119 @@
 ---
-import InternalPage from "@components/InternalPage.astro";
+import CvWebView from "@components/cv/CvWebView.astro";
 import Layout from "@layouts/Layout.astro";
+import { CV_DATA, type CvLanguage } from "../data/cv";
+
+const initialLanguage: CvLanguage =
+  Astro.url.searchParams.get("lang") === "en" ? "en" : "es";
+
+const navLinks =
+  initialLanguage === "en"
+    ? [
+        { text: "Home", href: "#inicio" },
+        { text: "About", href: "#sobre-mi" },
+        { text: "Projects", href: "#proyectos" },
+        { text: "Community & Impact", href: "#comunidad" },
+        { text: "Blog", href: "/blog" },
+        { text: "Contact", href: "#contacto" },
+      ]
+    : undefined;
+
+const footer =
+  initialLanguage === "en"
+    ? {
+        tagline: "Software, community and projects with a human focus.",
+        navLinks: navLinks ?? [],
+        contactLinks: [
+          { text: "contacto@jesuszuna.com", href: "mailto:contacto@jesuszuna.com" },
+          { text: "Professional WhatsApp", href: "https://wa.me/593962997060" },
+          { text: "GitHub", href: "https://github.com/jesuszunap" },
+          {
+            text: "LinkedIn",
+            href: "https://www.linkedin.com/in/jesús-zuña/",
+          },
+        ],
+        legalLinks: [
+          { text: "CV", href: "/cv?lang=en" },
+          { text: "Privacy", href: "/privacidad" },
+          { text: "Legal Notice", href: "/aviso-legal" },
+        ],
+      }
+    : undefined;
+
+const footerLabels =
+  initialLanguage === "en"
+    ? {
+        navigation: "Navigation",
+        contact: "Contact",
+        legal: "Legal",
+        rights: "All rights reserved.",
+      }
+    : undefined;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    name: "CV de Jesús Zuña Pacheco",
+    url: "https://jesuszuna.com/cv",
+    description:
+      "CV web de Jesús Zuña Pacheco, desarrollador de software y estudiante de Ingeniería de Software.",
+    inLanguage: initialLanguage,
+    mainEntity: {
+      "@type": "Person",
+      name: "Jesús Zuña Pacheco",
+      url: "https://jesuszuna.com",
+      jobTitle:
+        initialLanguage === "en"
+          ? "Software Developer and Software Engineering Student"
+          : "Desarrollador de software y estudiante de Ingeniería de Software",
+      email: CV_DATA.person.contact.email,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Guayaquil",
+        addressCountry: "EC",
+      },
+      sameAs: [
+        CV_DATA.person.contact.github.href,
+        CV_DATA.person.contact.linkedin.href,
+      ],
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Universidad de Guayaquil",
+      },
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: initialLanguage === "en" ? "Home" : "Inicio",
+        item: "https://jesuszuna.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "CV",
+        item: "https://jesuszuna.com/cv",
+      },
+    ],
+  },
+];
 ---
 
-<Layout>
-  <InternalPage title="CV">
-    <p>
-      Esta sección reunirá información profesional, formación, experiencia,
-      proyectos y habilidades de Jesús Zuña.
-    </p>
-  </InternalPage>
+<Layout
+  title="CV de Jesús Zuña Pacheco | Desarrollador de software"
+  description="CV web de Jesús Zuña Pacheco, desarrollador de software y estudiante de Ingeniería de Software. Experiencia, proyectos, habilidades, educación e idiomas."
+  ogTitle="CV de Jesús Zuña Pacheco"
+  ogDescription="Experiencia, proyectos, habilidades, educación e idiomas de Jesús Zuña Pacheco."
+  lang={initialLanguage}
+  navLinks={navLinks}
+  footer={footer}
+  footerLabels={footerLabels}
+  structuredData={structuredData}
+>
+  <CvWebView data={CV_DATA} defaultLanguage={initialLanguage} />
 </Layout>

@@ -13,12 +13,12 @@ export const SITE_CONFIG: SiteConfig = {
   brand: "Jesús Zuña",
   siteUrl: "https://jesuszuna.com",
   title: "Jesús Zuña | Software, proyectos y comunidad",
-  author: "Jesús Zuña",
+  author: "Jesús Zuña Pacheco",
   description:
-    "Sitio personal de Jesús Zuña, estudiante de Ingeniería en Software y desarrollador enfocado en crear soluciones digitales, automatizaciones, proyectos de software e iniciativas de Comunidad e Impacto.",
+    "Sitio personal de Jesús Zuña Pacheco, desarrollador de software y estudiante de Ingeniería de Software en Guayaquil, Ecuador. Proyectos, automatizaciones, CV e iniciativas de comunidad.",
   ogTitle: "Jesús Zuña | Software, proyectos y comunidad",
   ogDescription:
-    "Desarrollador de software y estudiante de Ingeniería en Software. Proyectos, automatizaciones e iniciativas de Comunidad e Impacto.",
+    "Desarrollador de software y estudiante de Ingeniería de Software en Guayaquil, Ecuador. Proyectos, automatizaciones, CV e iniciativas de comunidad.",
   ogImage: "/og-image.png",
   language: "es",
   email: "contacto@jesuszuna.com",
@@ -75,7 +75,7 @@ export const SITE_CONTENT: SiteContent = {
     id: "sobre-mi",
     title: "Sobre mí",
     description:
-      "Soy Jesús Zuña Pacheco, estudiante de Ingeniería en Software en la Universidad de Guayaquil. Desde Guayaquil, Ecuador, desarrollo proyectos digitales, automatizaciones y herramientas pensadas para resolver problemas reales de forma clara, útil y mantenible.\n\nMás allá del código, me interesa construir cosas que tengan sentido para otras personas: soluciones que simplifiquen procesos, proyectos que puedan crecer con orden e iniciativas que conecten información, comunidad y tecnología.",
+      "Soy Jesús Zuña Pacheco, estudiante de Ingeniería en Software en la Universidad de Guayaquil. Desde Guayaquil, Ecuador, desarrollo proyectos digitales, automatizaciones y herramientas pensadas para resolver problemas reales de forma clara, útil y mantenible.\n\nMás allá del código, me interesa construir soluciones que tengan sentido para otras personas: herramientas que simplifiquen procesos, ordenen información y puedan crecer con una base clara.\n\nActualmente sigo construyendo mi camino profesional a través de proyectos, aprendizaje constante y experiencias que me permiten aplicar la tecnología en contextos reales.",
     facts: [
       { label: "Ubicación", value: "Guayaquil, Ecuador" },
       {

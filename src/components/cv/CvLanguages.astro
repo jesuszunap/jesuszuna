@@ -1,0 +1,26 @@
+---
+import type { CvData, CvLanguage, CvRenderMode } from "../../data/cv";
+
+interface Props {
+  data: CvData;
+  language: CvLanguage;
+  mode: CvRenderMode;
+}
+
+const { data, language, mode } = Astro.props;
+---
+
+<ul class:list={[mode === "web" ? "grid gap-4 sm:grid-cols-2" : "print-inline-list"]}>
+  {
+    data.languages.map((item) => (
+      <li class={mode === "web" ? "rounded-lg border border-border bg-card-strong p-5 shadow-sm motion-safe:transition motion-safe:duration-300 hover:border-primary/60 hover:bg-card hover:shadow-lg motion-safe:hover:-translate-y-0.5" : ""}>
+        <span class={mode === "web" ? "font-semibold text-white" : ""}>
+          {item.name[language]}
+        </span>
+        <span class={mode === "web" ? "ml-2 text-neutral" : ""}>
+          {item.level[language]}
+        </span>
+      </li>
+    ))
+  }
+</ul>

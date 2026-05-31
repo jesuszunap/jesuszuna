@@ -1,0 +1,47 @@
+---
+import type { CvData, CvLanguage, CvRenderMode } from "../../data/cv";
+
+interface Props {
+  data: CvData;
+  language: CvLanguage;
+  mode: CvRenderMode;
+}
+
+const { data, language, mode } = Astro.props;
+---
+
+<div class:list={[mode === "web" ? "grid gap-5 lg:grid-cols-3" : "print-list"]}>
+  {
+    data.projects.map((project) => (
+      <article class:list={[mode === "web" ? "group flex min-h-full flex-col rounded-lg border border-border bg-card-strong p-5 shadow-sm motion-safe:transition motion-safe:duration-300 hover:border-primary/60 hover:bg-card hover:shadow-lg motion-safe:hover:-translate-y-0.5" : "print-item"]}>
+        <h3 class={mode === "web" ? "text-lg font-semibold text-white" : ""}>
+          {mode === "web" ? (
+            <a
+              class="outline-none motion-safe:transition motion-safe:duration-200 group-hover:text-primary focus-visible:text-primary"
+              href={project.href}
+            >
+              {project.name[language]}
+            </a>
+          ) : (
+            project.name[language]
+          )}
+        </h3>
+        <p class={mode === "web" ? "mt-3 text-sm text-neutral" : "print-description"}>
+          {project.description[language][mode]}
+        </p>
+        <ul class={mode === "web" ? "mt-4 list-disc space-y-2 pl-5 text-sm text-neutral marker:text-primary/75" : "print-bullets"}>
+          {project.highlights[language].map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+        <div class={mode === "web" ? "mt-auto flex flex-wrap gap-2 pt-5" : "print-tags"}>
+          {project.technologies.map((technology) => (
+            <span class={mode === "web" ? "rounded-full border border-border bg-card px-3 py-1 text-xs text-primary motion-safe:transition motion-safe:duration-200 group-hover:border-primary/45 group-hover:bg-soft" : ""}>
+              {technology}
+            </span>
+          ))}
+        </div>
+      </article>
+    ))
+  }
+</div>
