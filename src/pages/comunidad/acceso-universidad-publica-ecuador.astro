@@ -1,18 +1,502 @@
 ---
-import InternalPage from "@components/InternalPage.astro";
-import { SITE_CONTENT } from "@config";
 import Layout from "@layouts/Layout.astro";
 
-const initiative = SITE_CONTENT.community.items.find(
-  ({ name }) => name === "Acceso a la universidad pública en Ecuador",
-);
+const title = "Acceso a la universidad pública en Ecuador | Jesús Zuña";
+const description =
+  "Comunidad de Telegram creada para compartir información, materiales y orientación entre aspirantes a la universidad pública en Ecuador durante su etapa principal entre 2020 y 2023.";
+
+const telegramUrl = "https://t.me/TransformarGrupo";
+const coverUrl = "/images/community/acceso-universidad-publica-ecuador/cover.webp";
+
+const problemCards = [
+  {
+    title: "Dudas del proceso",
+    text: "Fechas, requisitos, etapas de admisión y cambios importantes que los aspirantes necesitaban entender.",
+  },
+  {
+    title: "Materiales de estudio",
+    text: "Documentos, ejercicios, diapositivas y recursos compartidos para apoyar la preparación.",
+  },
+  {
+    title: "Apoyo entre aspirantes",
+    text: "Preguntas, respuestas y orientación entre personas que atravesaban procesos similares.",
+  },
+];
+
+const workflow = [
+  "Telegram como punto de encuentro",
+  "Canales conectados para documentos y noticias",
+  "Colaboradores por periodos",
+  "Organización de recursos y orientación",
+];
+
+const stats = [
+  {
+    value: "2020–2023",
+    label: "Años de actividad principal",
+  },
+  {
+    value: "Más de 40.000 integrantes",
+    label: "En su etapa de mayor alcance",
+  },
+  {
+    value: "Más de 2 millones de mensajes",
+    label: "Interacciones acumuladas durante su etapa activa",
+  },
+];
 ---
 
-<Layout>
-  <InternalPage
-    title="Acceso a la universidad pública en Ecuador"
-    note="Página de iniciativa en preparación."
-  >
-    <p>{initiative?.summary}</p>
-  </InternalPage>
+<Layout
+  title={title}
+  description={description}
+  ogTitle="Acceso a la universidad pública en Ecuador"
+  ogDescription={description}
+  ogImage={coverUrl}
+>
+  <article class="pt-8 pb-14 md:pt-12 md:pb-20">
+    <a class="mb-8 inline-block text-sm font-medium text-primary" href="/#comunidad">
+      Volver a Comunidad e Impacto
+    </a>
+
+    <section class="grid items-center gap-8 lg:grid-cols-[0.88fr_1.12fr]">
+      <figure class="media-card hero-media overflow-hidden rounded-lg border border-border bg-card shadow-sm lg:order-2">
+        <img
+          class="block w-full"
+          src={coverUrl}
+          alt="Banner de Acceso a la universidad pública en Ecuador, comunidad de Telegram para compartir información y apoyo entre aspirantes universitarios."
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+      </figure>
+
+      <div class="lg:order-1">
+        <span class="hero-badge mb-5 inline-block rounded-full px-3 py-1 text-xs font-medium">
+          Comunidad e Impacto
+        </span>
+        <h1 class="font-serif text-[2.2rem] font-bold leading-tight text-white md:text-[3.05rem]">
+          Acceso a la universidad pública en Ecuador
+        </h1>
+        <p class="mt-5 font-serif text-xl font-medium text-primary md:text-2xl">
+          Un espacio de apoyo entre aspirantes universitarios
+        </p>
+        <p class="mt-5 text-lg text-neutral">
+          Un espacio de Telegram creado para compartir información, materiales y
+          orientación entre personas que buscaban ingresar a la universidad
+          pública en Ecuador.
+        </p>
+        <p class="mt-5 text-sm text-neutral">Actividad principal: 2020–2023</p>
+        <a
+          class="btn-primary mt-8"
+          href={telegramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver comunidad en Telegram
+        </a>
+      </div>
+    </section>
+
+    <section class="community-section community-section-first intro-section grid gap-5 rounded-lg border border-border bg-card/45 p-5 backdrop-blur-md lg:grid-cols-[1.08fr_0.92fr] md:p-6">
+      <div class="intro-copy">
+        <h2>Una comunidad digital para acompañar el proceso de admisión</h2>
+        <p>
+          Acceso a la universidad pública en Ecuador fue una comunidad de
+          Telegram creada a inicios de 2020 para reunir información, materiales
+          de estudio, noticias y dudas frecuentes sobre el ingreso a la educación
+          superior pública.
+        </p>
+        <p>
+          En una etapa marcada por la pandemia y por cambios en los procesos de
+          admisión, el grupo permitió que aspirantes de distintas regiones del
+          país pudieran conversar, compartir recursos y apoyarse entre sí.
+        </p>
+      </div>
+      <div class="community-card intro-note">
+        <p class="note-label">Por qué nació</p>
+        <p>
+          La comunidad nació después de vivir un proceso de admisión y recibir
+          ayuda de otras personas. La intención fue devolver parte de ese apoyo
+          organizando información útil para nuevos aspirantes.
+        </p>
+      </div>
+    </section>
+
+    <section class="community-section">
+      <div class="section-heading">
+        <h2>Información más clara en una etapa de incertidumbre</h2>
+        <p>
+          Muchos aspirantes necesitaban entender fechas, requisitos, cambios de
+          proceso, contenidos de evaluación y formas de preparación. La comunidad
+          funcionó como un punto de encuentro para ordenar información y
+          facilitar apoyo entre estudiantes.
+        </p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          problemCards.map((card) => (
+            <article class="community-card step-card">
+              <span class="step-marker" aria-hidden="true"></span>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="community-section grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="community-card">
+        <h2>De estudiantes para estudiantes</h2>
+        <p>
+          La comunidad se sostuvo como una iniciativa altruista, sin cobros ni
+          pagos. La idea era que la información y los recursos pudieran circular
+          de forma abierta, con apoyo de colaboradores que ayudaban a responder
+          dudas, compartir noticias y mantener el espacio organizado.
+        </p>
+        <p>
+          Con el tiempo también se organizaron canales complementarios para
+          documentos y noticias relacionadas con los procesos de admisión.
+        </p>
+      </div>
+
+      <div class="community-card list-card">
+        <ul class="grid gap-3">
+          {
+            workflow.map((item) => (
+              <li>{item}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="community-section">
+      <div class="section-heading">
+        <h2>Una etapa de alto movimiento comunitario</h2>
+        <p>
+          Estos datos ayudan a dimensionar el movimiento que llegó a tener la
+          comunidad durante su etapa activa, sin perder de vista que su valor
+          principal estuvo en el apoyo compartido entre estudiantes.
+        </p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          stats.map((stat) => (
+            <article class="community-card stat-card">
+              <p class="stat-value">{stat.value}</p>
+              <p>{stat.label}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="community-section community-card history-card">
+      <h2>Una comunidad que cumplió una etapa</h2>
+      <div class="history-body">
+        <p>
+          Creé y administré esta comunidad con la intención de compartir
+          información, organizar recursos y facilitar apoyo entre aspirantes,
+          después de vivir mi propio proceso de admisión y recibir ayuda de otras
+          personas.
+        </p>
+        <p>
+          Con el tiempo, el grupo cambió de nombre conforme cambiaban los procesos
+          de admisión: Ser Bachiller, EAES, Transformar y otras etapas del sistema.
+          También se sumaron colaboradores que ayudaron a mantener el espacio
+          activo y útil durante distintos periodos.
+        </p>
+        <p>
+          Cuando el proceso nacional de admisión dejó de funcionar como una prueba
+          unificada y las universidades pasaron a gestionar sus propios procesos,
+          la comunidad dejó de tener el mismo sentido como espacio nacional. Por
+          eso, su etapa principal terminó en 2023 y hoy queda como registro de una
+          experiencia comunitaria educativa.
+        </p>
+      </div>
+    </section>
+
+    <section class="community-section cta-card">
+      <div>
+        <h2>Un registro de apoyo entre estudiantes</h2>
+        <p>
+          Aunque su etapa principal ya terminó, la comunidad permanece como
+          recuerdo de un espacio donde miles de aspirantes compartieron
+          información, materiales y dudas en torno al acceso a la universidad
+          pública en Ecuador.
+        </p>
+        <p class="soft-note">
+          La comunidad se mantiene accesible como archivo histórico y espacio de
+          consulta, aunque ya no conserva la actividad de sus años principales.
+        </p>
+      </div>
+      <a
+        class="btn-primary"
+        href={telegramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver comunidad en Telegram
+      </a>
+    </section>
+  </article>
 </Layout>
+
+<style>
+  .community-section {
+    margin-top: 5rem;
+  }
+
+  .community-section-first {
+    margin-top: 3.5rem;
+  }
+
+  .section-heading {
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-heading h2,
+  .intro-copy h2,
+  .community-card h2,
+  .cta-card h2 {
+    font-family: var(--font-sora);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.45rem;
+    color: var(--text-main);
+  }
+
+  .section-heading p,
+  .intro-copy p,
+  .community-card p,
+  .cta-card p {
+    margin-top: 1rem;
+    color: var(--text-muted);
+  }
+
+  .community-card,
+  .media-card,
+  .cta-card {
+    border: 1px solid var(--border-soft);
+    border-radius: 0.5rem;
+    background: var(--surface-card);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    backdrop-filter: blur(12px);
+  }
+
+  .community-card {
+    padding: 1.5rem;
+  }
+
+  .community-card h3 {
+    font-family: var(--font-sora);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    color: var(--text-main);
+  }
+
+  .intro-section {
+    align-items: stretch;
+  }
+
+  .intro-copy {
+    max-width: 42rem;
+    align-self: center;
+  }
+
+  .intro-note,
+  .list-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+      linear-gradient(180deg, var(--surface-card-strong), var(--surface-card)),
+      var(--surface-card);
+    box-shadow: 0 10px 26px rgb(0 0 0 / 0.07);
+  }
+
+  .note-label {
+    margin-top: 0;
+    font-family: var(--font-sora);
+    color: var(--text-main);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+  }
+
+  .intro-note p:last-child {
+    font-size: 1.05rem;
+    line-height: 1.7rem;
+  }
+
+  .step-card {
+    min-height: 14rem;
+  }
+
+  .step-marker {
+    display: inline-flex;
+    width: 2rem;
+    height: 0.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-main), #d54c5f);
+  }
+
+  .list-card li {
+    border: 1px solid var(--border-soft);
+    border-radius: 0.5rem;
+    background: var(--surface-soft);
+    padding: 0.8rem 0.95rem;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .stat-card {
+    min-height: 10rem;
+  }
+
+  .stat-value {
+    margin-top: 0;
+    font-family: var(--font-sora);
+    color: var(--text-main);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.1rem;
+  }
+
+  .history-card {
+    width: 100%;
+  }
+
+  .history-body {
+    max-width: 88ch;
+  }
+
+  .history-body p {
+    margin-top: 1.35rem;
+    color: var(--text-muted);
+  }
+
+  .history-body p + p {
+    margin-top: 1.35rem;
+  }
+
+  .cta-card {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    background:
+      linear-gradient(180deg, var(--surface-card-strong), var(--surface-card)),
+      var(--surface-card);
+  }
+
+  .soft-note {
+    max-width: 48rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-badge {
+    background: var(--accent-main);
+    color: var(--surface-page);
+  }
+
+  .hero-media {
+    box-shadow: 0 14px 36px rgb(0 0 0 / 0.1);
+  }
+
+  .hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    min-height: 2.75rem;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background: var(--accent-main);
+    color: var(--surface-page);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .community-card,
+  .media-card,
+  .cta-card,
+  .btn-primary,
+  .list-card li {
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease;
+  }
+
+  @media (hover: hover) {
+    .community-card:hover,
+    .cta-card:hover {
+      border-color: var(--accent-main);
+      box-shadow: 0 12px 28px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+
+    .media-card:hover {
+      border-color: var(--border-soft);
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      transform: none;
+    }
+
+    .btn-primary:hover {
+      border-color: var(--accent-main);
+      box-shadow: 0 10px 22px rgb(0 0 0 / 0.1);
+      transform: translateY(-2px);
+    }
+
+    .list-card li:hover {
+      border-color: var(--accent-main);
+      transform: translateY(-1px);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .community-card,
+    .cta-card {
+      padding: 2rem;
+    }
+
+    .community-section-first {
+      margin-top: 4rem;
+    }
+
+    .cta-card {
+      grid-template-columns: 1fr auto;
+    }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .community-card,
+    .media-card,
+    .cta-card,
+    .btn-primary,
+    .list-card li {
+      transition: none;
+    }
+
+    .community-card:hover,
+    .cta-card:hover,
+    .btn-primary:hover,
+    .list-card li:hover {
+      transform: none;
+    }
+  }
+</style>

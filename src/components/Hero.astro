@@ -33,14 +33,16 @@ const { id, name, specialty, summary, actions, technologies } = Astro.props;
         actions.map((action, index) => (
           <a
             class:list={[
-              "inline-block rounded-full border px-7 py-4 text-sm font-medium motion-safe:transition motion-safe:duration-200 motion-safe:ease-out hover:shadow-lg focus-visible:shadow-lg",
+              "group inline-block rounded-full border px-7 py-4 text-sm font-medium outline-none motion-safe:transition motion-safe:duration-200 motion-safe:ease-out hover:shadow-md focus-visible:shadow-md focus-visible:ring-2 focus-visible:ring-primary/40",
               index === 0
-                ? "border-primary bg-primary text-black motion-safe:hover:-translate-y-0.5"
-                : "border-border bg-card text-white hover:border-primary hover:text-primary motion-safe:hover:-translate-y-0.5",
+                ? "border-primary bg-primary text-black hover:shadow-primary/10"
+                : "border-border bg-card text-white hover:border-primary hover:bg-card-strong hover:text-primary",
             ]}
             href={action.href}
           >
-            {action.text}
+            <span class="inline-block motion-safe:transition motion-safe:duration-200 motion-safe:ease-out motion-safe:group-hover:-translate-y-0.5">
+              {action.text}
+            </span>
           </a>
         ))
       }

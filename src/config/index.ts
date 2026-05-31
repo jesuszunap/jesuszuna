@@ -27,7 +27,7 @@ export const SITE_CONFIG: SiteConfig = {
     { text: "GitHub", href: "https://github.com/jesuszunap" },
     {
       text: "LinkedIn",
-      href: "https://www.linkedin.com/in/jesús-zuña-pacheco-694146189/",
+      href: "https://www.linkedin.com/in/jesús-zuña/",
     },
   ],
   footer: {
@@ -39,7 +39,7 @@ export const SITE_CONFIG: SiteConfig = {
       { text: "GitHub", href: "https://github.com/jesuszunap" },
       {
         text: "LinkedIn",
-        href: "https://www.linkedin.com/in/jesús-zuña-pacheco-694146189/",
+        href: "https://www.linkedin.com/in/jesús-zuña/",
       },
     ],
     legalLinks: [
@@ -166,6 +166,7 @@ export const SITE_CONTENT: SiteContent = {
     items: [
       {
         name: "Donadores de sangre en Guayaquil",
+        status: "Apoyo desde 2024",
         summary:
           "Donadores de sangre en Guayaquil es una iniciativa comunitaria que ayuda a conectar solicitudes de donación con personas dispuestas a colaborar, facilitando la difusión de información de forma organizada y responsable.",
         cardSummary:
@@ -185,11 +186,11 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         name: "Acceso a la universidad pública en Ecuador",
-        status: "2020 - 2024",
+        status: "2020 - 2023",
         summary:
-          "Acceso a la universidad pública en Ecuador fue una iniciativa comunitaria activa entre 2020 y 2024, orientada a compartir información, resolver dudas y acompañar a personas interesadas en ingresar a la educación superior pública.",
+          "Acceso a la universidad pública en Ecuador fue una iniciativa comunitaria activa entre 2020 y 2023, orientada a compartir información, resolver dudas y acompañar a personas interesadas en ingresar a la educación superior pública.",
         cardSummary:
-          "Iniciativa comunitaria activa entre 2020 y 2024 para compartir información útil sobre el acceso a la educación superior pública en Ecuador.",
+          "Iniciativa comunitaria activa entre 2020 y 2023 para compartir información útil sobre el acceso a la educación superior pública en Ecuador.",
         purpose:
           "Durante su etapa activa, buscó facilitar el acceso a información clara sobre procesos de admisión, requisitos, oportunidades y dudas frecuentes relacionadas con el ingreso a la universidad pública en Ecuador.",
         role:
@@ -236,18 +237,18 @@ export const SITE_CONTENT: SiteContent = {
       },
       {
         text: "WhatsApp",
-        value: "Escribirme por WhatsApp",
+        value: "Enviar mensaje por WhatsApp",
         href: "https://wa.me/593962997060",
       },
       {
         text: "GitHub",
-        value: "github.com/jesuszunap",
+        value: "Ver proyectos en GitHub",
         href: "https://github.com/jesuszunap",
       },
       {
         text: "LinkedIn",
-        value: "Perfil profesional",
-        href: "https://www.linkedin.com/in/jesús-zuña-pacheco-694146189/",
+        value: "Ver perfil profesional",
+        href: "https://www.linkedin.com/in/jesús-zuña/",
       },
     ],
   },

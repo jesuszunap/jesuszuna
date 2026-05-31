@@ -9,6 +9,8 @@ const { brand, footer } = Astro.props;
 const isHome = Astro.url.pathname === "/";
 const getNavHref = (href: string) =>
   href.startsWith("#") && !isHome ? `/${href}` : href;
+const footerLinkClass =
+  "inline-block rounded-sm outline-none motion-safe:transition motion-safe:duration-200 motion-safe:ease-out hover:text-primary motion-safe:hover:translate-x-0.5 focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary/40";
 ---
 
 <footer class="w-full border-t border-border px-5 pt-10 pb-8 text-white">
@@ -23,7 +25,7 @@ const getNavHref = (href: string) =>
         {
           footer.navLinks.map(({ text, href }) => (
             <li>
-              <a class="hover:text-primary" href={getNavHref(href)}>
+              <a class={footerLinkClass} href={getNavHref(href)}>
                 {text}
               </a>
             </li>
@@ -39,9 +41,10 @@ const getNavHref = (href: string) =>
             <li>
               {href ? (
                 <a
-                  class="hover:text-primary"
+                  class={footerLinkClass}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 >
                   {text}
                 </a>
@@ -59,7 +62,7 @@ const getNavHref = (href: string) =>
         {
           footer.legalLinks.map(({ text, href }) => (
             <li>
-              <a class="hover:text-primary" href={href}>
+              <a class={footerLinkClass} href={href}>
                 {text}
               </a>
             </li>
