@@ -101,7 +101,7 @@ export const SITE_CONTENT: SiteContent = {
       {
         name: "QX - Extractor Quipux",
         badge: "Proyecto destacado",
-        status: "Versión 3.0.0 disponible",
+        status: "Versión 3.1.0 disponible",
         summary:
           "QX - Extractor Quipux es una aplicación de escritorio diseñada para automatizar la extracción, organización y exportación de información documental desde Quipux, reduciendo tareas repetitivas y facilitando el trabajo con documentos institucionales.",
         cardSummary:
