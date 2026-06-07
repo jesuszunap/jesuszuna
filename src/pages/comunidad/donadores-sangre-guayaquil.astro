@@ -139,7 +139,7 @@ const structuredData = [
           importante.
         </p>
       </div>
-      <div class="community-card intro-note">
+      <div class="intro-note">
         <p class="note-label">Propósito</p>
         <p>
           El propósito es mantener un espacio útil, organizado y responsable para
@@ -283,10 +283,10 @@ const structuredData = [
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background:
-      linear-gradient(180deg, var(--surface-card-strong), var(--surface-card)),
-      var(--surface-card);
-    box-shadow: 0 10px 26px rgb(0 0 0 / 0.07);
+    border-left: 4px solid var(--accent-main);
+    border-radius: 0 0.5rem 0.5rem 0;
+    background: var(--surface-soft);
+    padding: 1.5rem;
   }
 
   .note-label {
@@ -332,9 +332,10 @@ const structuredData = [
 
   .facts-card li {
     border: 1px solid var(--border-soft);
-    border-radius: 0.5rem;
+    border-left: 3px solid var(--accent-main);
+    border-radius: 0.375rem;
     background: var(--surface-soft);
-    padding: 0.8rem 0.95rem;
+    padding: 0.8rem 1rem;
     color: var(--text-main);
     font-size: 0.95rem;
     font-weight: 500;
@@ -387,8 +388,7 @@ const structuredData = [
   .community-card,
   .media-card,
   .cta-card,
-  .btn-primary,
-  .facts-card li {
+  .btn-primary {
     transition:
       transform 220ms ease,
       box-shadow 220ms ease,
@@ -415,11 +415,6 @@ const structuredData = [
       box-shadow: 0 10px 22px rgb(0 0 0 / 0.1);
       transform: translateY(-2px);
     }
-
-    .facts-card li:hover {
-      border-color: var(--accent-main);
-      transform: translateY(-1px);
-    }
   }
 
   @media (min-width: 48rem) {
@@ -441,15 +436,13 @@ const structuredData = [
     .community-card,
     .media-card,
     .cta-card,
-    .btn-primary,
-    .facts-card li {
+    .btn-primary {
       transition: none;
     }
 
     .community-card:hover,
     .cta-card:hover,
-    .btn-primary:hover,
-    .facts-card li:hover {
+    .btn-primary:hover {
       transform: none;
     }
   }

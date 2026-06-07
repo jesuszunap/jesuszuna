@@ -136,8 +136,11 @@ const structuredData = [
         </p>
         <ul class="mt-7 flex flex-wrap gap-2">
           {
-            tags.map((tag) => (
-              <li class="rounded-full border border-border bg-soft px-3 py-1 text-xs text-neutral">
+            tags.map((tag, index) => (
+              <li
+                class="rounded-full border border-border bg-soft px-3 py-1 text-xs text-neutral motion-safe:animate-fade-in-up transition-all duration-300 hover:border-primary hover:bg-card-strong hover:text-primary hover:shadow-md hover:shadow-primary/20 motion-safe:hover:-translate-y-1"
+                style={`animation-delay: ${index * 75}ms;`}
+              >
                 {tag}
               </li>
             ))
@@ -354,7 +357,6 @@ const structuredData = [
 
   .project-card,
   .comparison-block,
-  .comparison-card,
   .media-card {
     border: 1px solid var(--border-soft);
     border-radius: 0.5rem;
@@ -423,12 +425,10 @@ const structuredData = [
 
   .comparison-card {
     overflow: hidden;
-    background: var(--surface-card-strong);
   }
 
   .comparison-card figcaption {
-    border-bottom: 1px solid var(--border-soft);
-    padding: 0.75rem 0.9rem;
+    padding: 0.5rem 0.2rem;
     color: var(--accent-main);
     font-size: 0.875rem;
     font-weight: 600;
@@ -440,6 +440,8 @@ const structuredData = [
     place-items: center;
     background: var(--surface-soft);
     padding: 0.65rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 0.5rem;
   }
 
   .comparison-image img {
@@ -468,7 +470,6 @@ const structuredData = [
 
   .project-card,
   .comparison-block,
-  .comparison-card,
   .btn-primary,
   .btn-secondary,
   .code-link,
@@ -483,8 +484,7 @@ const structuredData = [
 
   @media (hover: hover) {
     .project-card:hover,
-    .comparison-block:hover,
-    .comparison-card:hover {
+    .comparison-block:hover {
       border-color: var(--accent-main);
       box-shadow: 0 12px 28px rgb(0 0 0 / 0.1);
       transform: translateY(-2px);
@@ -540,7 +540,6 @@ const structuredData = [
   @media (prefers-reduced-motion: reduce) {
     .project-card,
     .comparison-block,
-    .comparison-card,
     .btn-primary,
     .btn-secondary,
     .code-link,
@@ -550,7 +549,6 @@ const structuredData = [
 
     .project-card:hover,
     .comparison-block:hover,
-    .comparison-card:hover,
     .btn-primary:hover,
     .btn-secondary:hover,
     .code-link:hover,

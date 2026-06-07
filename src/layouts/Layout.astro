@@ -212,5 +212,22 @@ const structuredData = [
         />
       )
     }
+    <script>
+      const cleanupAnimations = () => {
+        document.querySelectorAll('.animate-fade-in-up, [class*="animate-fade-in-up"]').forEach((el) => {
+          el.addEventListener('animationend', () => {
+            el.classList.remove('animate-fade-in-up');
+            el.classList.remove('motion-safe:animate-fade-in-up');
+          }, { once: true });
+        });
+      };
+
+      // Run on initial load
+      cleanupAnimations();
+
+      // Run on Astro page navigation / dynamic load events
+      document.addEventListener('astro:after-swap', cleanupAnimations);
+      document.addEventListener('astro:page-load', cleanupAnimations);
+    </script>
   </body>
 </html>

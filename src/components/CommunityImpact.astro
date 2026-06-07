@@ -12,37 +12,24 @@ const { id, title, subtitle, items } = Astro.props;
   <div class="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
     {
       items.map(({ name, status, summary, cardSummary, impact, shortImpact, action }) => (
-        <article class="flex h-full flex-col rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl motion-safe:hover:-translate-y-1 md:min-h-[28rem]">
+        <article class="group relative flex h-full flex-col rounded-lg border border-border bg-card p-6 shadow-sm backdrop-blur-md motion-safe:transition motion-safe:duration-300 motion-safe:ease-out hover:border-primary hover:shadow-xl motion-safe:hover:-translate-y-1 md:min-h-[28rem]">
+          {action && (
+            <a
+              href={action.href}
+              class="absolute inset-0 z-[1]"
+              aria-label={name}
+            />
+          )}
           <div class="mb-4 min-h-14">
-            <h3 class="font-serif text-2xl font-semibold text-white">
-              {action ? (
-                <a
-                  href={action.href}
-                  class="rounded-sm transition-colors hover:text-primary focus-visible:text-primary motion-safe:hover:translate-x-0.5"
-                  aria-label={`Ver iniciativa ${name}`}
-                >
-                  {name}
-                </a>
-              ) : (
-                name
-              )}
-            </h3>
+            <h3 class:list={["font-serif text-2xl font-semibold text-white motion-safe:transition motion-safe:duration-200", action && "group-hover:text-primary"]}>{name}</h3>
             {status && <span class="mt-2 block text-xs text-primary">{status}</span>}
           </div>
           <p class="mb-5 text-sm text-neutral">{cardSummary ?? summary}</p>
           {(shortImpact ?? impact) && (
-            <p class="mt-auto border-t border-border pt-5 text-sm text-white/80 motion-safe:transition motion-safe:duration-200 hover:border-primary">
+            <p class="mt-auto border-t border-border pt-5 text-sm text-white/80 motion-safe:transition motion-safe:duration-200 group-hover:border-primary">
               <span class="font-medium text-white">Impacto: </span>
               {shortImpact ?? impact}
             </p>
-          )}
-          {action && (
-            <a
-              href={action.href}
-              class="mt-7 inline-block text-sm font-medium text-white motion-safe:transition motion-safe:duration-200 hover:text-primary motion-safe:hover:translate-x-1"
-            >
-              {action.text}
-            </a>
           )}
         </article>
       ))

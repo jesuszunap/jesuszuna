@@ -50,8 +50,11 @@ const { id, name, specialty, summary, actions, technologies } = Astro.props;
 
     <ul class="flex max-w-3xl flex-wrap gap-3 text-xs text-neutral">
       {
-        technologies.map((technology) => (
-          <li class="rounded-full border border-border bg-card px-3 py-1.5 backdrop-blur-sm motion-safe:transition motion-safe:duration-200 hover:border-primary hover:bg-card-strong motion-safe:hover:-translate-y-0.5">
+        technologies.map((technology, index) => (
+          <li
+            class="rounded-full border border-border bg-card px-3 py-1.5 backdrop-blur-sm motion-safe:animate-fade-in-up transition-all duration-300 hover:border-primary hover:bg-card-strong hover:text-primary hover:shadow-md hover:shadow-primary/20 motion-safe:hover:-translate-y-1"
+            style={`animation-delay: ${index * 75}ms;`}
+          >
             {technology}
           </li>
         ))
